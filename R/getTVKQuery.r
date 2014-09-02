@@ -32,6 +32,8 @@ getTVKQuery<-function(query=NULL, species_only = TRUE, rec_only = FALSE, top = F
         
         q <- tolower(gsub(' ','%20', q))
         
+        q <- tolower(gsub('%20/%20','%2F', q)) # removes the spaces around the '/' divider present in some species names e.g. Fistulifera / Mayamaea - this appears to fix the issue              
+                
         json <- runnbnurl(service="query", query=q)
         
         json<-json$results
