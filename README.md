@@ -1,6 +1,9 @@
 # rnbn
 ------
 
+[![Build Status](https://api.travis-ci.org/ropensci/rnbn.png)](https://travis-ci.org/ropensci/rnbn)
+[![Build status](https://ci.appveyor.com/api/projects/status/62pjk61yr2ml0052/branch/master?svg=true)](https://ci.appveyor.com/project/sckott/rnbn/branch/master)
+
 ### Installation
 ----------------
 
