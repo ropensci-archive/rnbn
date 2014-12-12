@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>rnbn - Extracting data from the NBN Gateway into R</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{rnbn vignette}
+-->
+
+<h1>rnbn - Extracting data from the NBN Gateway into R</h1>
+
+<p>The National Biodiversity Network (NBN) is an on-line repository for biodiversity data from the UK. At the time of writing, it contains over 100 million species records in over 900 datasets. Data can be accessed via web-services provided by the Gateway web-site (see <a href="https://data.nbn.org.uk/Documentation/Web_Services/Web_Services-REST/resources/restapi/index.html">documentation</a>)</p>
+
+<h2>Introduction</h2>
+
+<p>This package provides methods to interact with the NBN&#39;s web services and get species
+records and other supporting information. The functions fall into two groups:</p>
+
+<h3>Functions that access a particular service</h3>
+
+<ul>
+<li><code>dataProviders</code> get information on the organisations that have contributed
+data to specified datasets</li>
+<li><code>datasetTaxa</code> gets a list of taxa that are included in a given dataset or
+list of datasets.</li>
+<li><code>getFeature</code> get information about a &ldquo;feature&rdquo; (a location at which
+occurrences have been recorded) given its &#39;featureID&#39;.</li>
+<li><code>getGroupSpeciesTVKs</code> given the name of a group (see <code>listGroups</code>)
+this function returns the pTVKs (preferred taxon version keys) for all members
+of that group. This is currently restricted to returning up to 5000 results.</li>
+<li><code>getOccurrences</code> get occurrences for a particular taxa, grid cell or
+species group and returns a data.frame containing the occurrences. Optionally,
+the results can be filtered by dataset, date and vicecounty.</li>
+<li><code>getTaxonomy</code> given a TVK, this function gets details of the taxonomic
+hierarchy of a taxon.</li>
+<li><code>getTVKQuery</code> given a search term this function returns species information,
+including the TVK, for the first 25 taxa that match that search on the NBN.</li>
+<li><code>listDatasets</code> returns a dataframe of the datasets available from the
+NBN Gateway for reference.</li>
+<li><code>listGroups</code> returns a dataframe of the group definitions from the
+NBN Gateway for reference.</li>
+<li><code>listOrganisations</code> returns a dataframe of the organisation definitions
+from the NBN Gateway for reference.</li>
+<li><code>listVCs</code> returns a dataframe of the Watsonian vice-counties and their
+keys for reference. </li>
+<li><code>nbnLogin</code> takes a username and password and logs the user into the NBN gateway<br/></li>
+</ul>
+
+<h3>Utility functions</h3>
+
+<p>These functions manipulate grid reference and date information  returned by the NBN Gateway</p>
+
+<ul>
+<li><code>datePart</code> takes the vague date information, returned in three fields
+(<code>startDate</code>, <code>endDate</code> and <code>dateTypeKey</code>) from the NBN Gateway and extracts elements
+of the date like the year or week, whilst properly taking into account the type of vague date.</li>
+<li><code>gridCoords</code> takes a grid reference string (OSGB or OSNI) and calculates
+the x,y coordinates of the bottom, left-hand corner of the grid square.</li>
+<li><code>gridRef</code> takes a grid reference string (OSGB or OSNI) and extracts grid
+references at other precisions. For example, extract 10km square grid refs
+from the grid references returned from the Gateway.</li>
+<li><code>gr2gps_latlon</code> takes a grid reference string (OSGB or OSNI) and calculates the latitude and longitude of the center or bottom left corner.</li>
+</ul>
+
+<h2>Registering with the NBN gateway and logging in</h2>
+
+<p>To use data from the NBN gateway you must first register. This is an easy process and
+can be done by visiting <a href="https://data.nbn.org.uk/User/Register">https://data.nbn.org.uk/User/Register</a>. Once registered
+you will be sent an email to verify your address, once verified you are ready to use 
+<code>rnbn</code>. </p>
+
+<p>When using <code>rnbn</code> you will be asked to login the first time you attempt to access
+occurrence data. Once logged in you will stay logged in for the remainder of your R session.</p>
+
+<h2>Getting species occurrence records</h2>
+
+<p>First install and load the package</p>
+
+<pre><code class="r"># Install the package
+install.packages(&#39;rnbn&#39;)
+</code></pre>
+
+<pre><code class="r"># Load the package
+library(rnbn)
+</code></pre>
+
+<p>The <code>getOccurrences</code> function gets a data.frame of species occurrence records from
+the NBN Gateway. Columns include name, TVK, date and location of the observation as a
+minimum, and may include other columns depending what has been submitted by the data
+providers and what access they allow. The first time this function is used in an R session you will be asked to enter your username and password at the console. An alternative method for logging in is to use the nbnLogin function (see below) </p>
+
+<p>The minimum information required to request species occurrences from the NBN
+Gateway is one of the following: a Taxon Version Key (TVK), a grid reference or the name
+of a species group. </p>
+
+<p>Independent of which method you use there are three messages that will appear in
+your console:</p>
+
+<pre><code class="r"># I could log in like this...
+# nbnLogin(username = &#39;myUsername&#39;, password = &#39;myPassword&#39;)
+# ...or let getOccurrences prompt me. The latter is more
+# secure as I dont have to include my password in my scripts
+
+# Request occurrence data using taxon version key
+occ &lt;- getOccurrences(tvks = &#39;NBNSYS0000002010&#39;)
+</code></pre>
+
+<pre><code>## Requesting batch 1 of 1 
+## Requesting data providers&#39; information
+</code></pre>
+
+<pre><code>## IMPORTANT: By using this package you are agreeing to the Gateway Terms &amp; Conditions and Privacy Policy (see https://data.nbn.org.uk/Terms). This message can be suppressed using the acceptTandC argument
+</code></pre>
+
+<p>The first message returned to console details the batch number being processed. <code>rnbn</code> breaks down a data request into batches so that it does not overload the system. This is also useful for monitoring progress. The second message tells us that the function is retrieving the data providers for the data it just collected. These can be silenced by setting <code>silent = TRUE</code>. The third message is a warning that highlights the terms and conditions associated with using data from the NBN gateway. It is important that you read these terms and conditions since by using the <code>rnbn</code> package you are accepting them. This warning can be silenced by setting <code>acceptTandC = TRUE</code>.</p>
+
+<h3>Using Taxon Version Keys (TVKs)</h3>
+
+<p>TVKs are 16-character strings of (usually, upper-case) letters and numbers. For example, &ldquo;NBNSYS0000007111&rdquo;.</p>
+
+<p>TVKs can be found using the function <code>getTVKquery</code>. This function will take the name of a species and attempt to match it to a TVK using the NBN&#39;s search feature. For example if we wanted the TVK for &ldquo;badger&rdquo; (<em>Meles meles</em>):</p>
+
+<pre><code class="r"># Search for taxon information using the query &#39;badger&#39;
+dt &lt;- getTVKQuery(query = &quot;badger&quot;)
+# Display two columns of the data &#39;ptaxonVersionKey&#39; and &#39;name&#39;
+dt[,c(&#39;ptaxonVersionKey&#39;,&#39;name&#39;)]
+</code></pre>
+
+<pre><code>##   ptaxonVersionKey            name
+## 1 NHMSYS0000080191          Badger
+## 2 NBNSYS0000013055     Badger Flea
+## 3 NHMSYS0000545919   a Badger flea
+## 4 NHMSYS0000080191 Eurasian Badger
+</code></pre>
+
+<p>You will notice that &ldquo;Badger&rdquo; and &ldquo;Eurasian Badger&rdquo; have the same &ldquo;ptaxonVersionKey&rdquo; (the &#39;p&#39; stands for preferred). This is because the terms are synonyms, both referring to <em>Meles meles</em> (which would also share the same ptaxonVersionKey). By using this TVK in the <code>getOccurrence</code> function it ensures that you get data for all synonyms. If you don&#39;t wish to include synonyms you can instead use the TVK given in the column &ldquo;taxonVersionKey&rdquo;.</p>
+
+<p>The following example will get all publicly available observations
+of <em>Tropidia scita</em> from all datasets and for any date:</p>
+
+<pre><code class="r"># Get species TVK
+# Using &#39;top = TRUE&#39; returns only the best match
+dt &lt;- getTVKQuery(query = &quot;Tropidia scita&quot;,
+                  top = TRUE) 
+
+# Retrieve data from NBN using a TVK
+occ &lt;- getOccurrences(tvks = dt$ptaxonVersionKey,
+                      silent = TRUE,
+                      acceptTandC = TRUE)
+
+# Print the first few rows and a selection of columns
+occ[1:10,c(&quot;pTaxonName&quot;, &quot;startDate&quot;,
+           &quot;latitude&quot;, &quot;longitude&quot;)]
+</code></pre>
+
+<pre><code>##        pTaxonName  startDate latitude   longitude
+## 1  Tropidia scita 1999-06-16 53.96629 -2.74077385
+## 2  Tropidia scita 1999-06-13 54.17269 -2.79041559
+## 3  Tropidia scita 1999-06-16 53.95730 -2.74061447
+## 4  Tropidia scita 1999-06-18 54.11877 -2.78938893
+## 5  Tropidia scita 2003-07-19 52.25042  1.60990207
+## 6  Tropidia scita 2003-07-15 52.31187  1.65893247
+## 7  Tropidia scita 2003-07-13 52.37498  1.01754937
+## 8  Tropidia scita 2003-07-16 52.25131  1.58066354
+## 9  Tropidia scita 2005-05-31 52.94603 -0.05926616
+## 10 Tropidia scita 2005-05-31 53.05868  0.18456629
+</code></pre>
+
+<p>TVKs can also be found on the NBN gateway at <a href="https://data.nbn.org.uk/Taxa">https://data.nbn.org.uk/Taxa</a>. Navigating to a species reveals additional information including the &ldquo;Taxon Version Key&rdquo;</p>
+
+<p>Occurrences for more than one species can be obtained by passing a list of TVKs. Such lists can be created in two ways: </p>
+
+<pre><code class="r"># List TVKs manually
+tvks &lt;- c(&quot;NHMSYS0000530420&quot;,&quot;NHMSYS0000530658&quot;)
+tvks
+</code></pre>
+
+<pre><code>## [1] &quot;NHMSYS0000530420&quot; &quot;NHMSYS0000530658&quot;
+</code></pre>
+
+<pre><code class="r"># Retrieve a list of TVKs using the NBN search
+species &lt;- getTVKQuery(&#39;grouse&#39;)
+tvks &lt;- unique(species$ptaxonVersionKey)
+tvks
+</code></pre>
+
+<pre><code>## [1] &quot;NHMSYS0000530420&quot; &quot;NHMSYS0000530658&quot;
+</code></pre>
+
+<h3>Using grid references</h3>
+
+<p>Data can be retrieved by specifying a grid reference in which to search:</p>
+
+<pre><code class="r"># Retrieve data from NBN using a UK gridreference
+occ &lt;- getOccurrences(gridRef = &#39;TL3490&#39;,
+                      silent = TRUE,
+                      acceptTandC = TRUE)
+
+# View some of the records returned
+occ[1:10, c(&quot;pTaxonName&quot;, &quot;location&quot;)]
+</code></pre>
+
+<pre><code>##                    pTaxonName location
+## 1            Ischnura elegans   TL3490
+## 2            Erythromma najas   TL3490
+## 3       Orthetrum cancellatum   TL3490
+## 4              Talpa europaea   TL3490
+## 5      Homalothecium sericeum TL342906
+## 6    Bryum bicolor sensu lato TL342905
+## 7  Rhytidiadelphus squarrosus TL340906
+## 8         Ceratodon purpureus TL340906
+## 9         Ceratodon purpureus TL340906
+## 10         Dicranum scoparium TL340906
+</code></pre>
+
+<p>This search will work with a range of grid reference resolutions and for grid references in OSNI and OSGB format.</p>
+
+<h3>Using species group</h3>
+
+<p>Data can be retrieved by specifying a species group. Species groups are taxonomic groups that are predefined by the NBN. A list of available groups can be found using the <code>listGroups</code> function.</p>
+
+<pre><code class="r"># View some of the groups available
+groups &lt;- listGroups()
+head(groups)
+</code></pre>
+
+<pre><code>##                        name              key
+## 1           acarine (Acari) NHMSYS0000629148
+## 2 acorn worm (Hemichordata) NHMSYS0000080031
+## 3                      alga NHMSYS0000080032
+## 4                 amphibian NHMSYS0000080033
+## 5                   annelid NHMSYS0000080034
+## 6                  archaean NHMSYS0000629143
+</code></pre>
+
+<p>Once you have decided which group you require the name is passed to getOccurrences in the following manner.</p>
+
+<pre><code class="r"># Retrieve data from NBN using a species group
+# Note this can take some time depending on the size of the species group
+occ &lt;- getOccurrences(group = &#39;quillwort&#39;,
+                      acceptTandC = TRUE)
+</code></pre>
+
+<h2>Filtering results</h2>
+
+<h3>By Dataset</h3>
+
+<p>Observations can be filtered so that they come only from datasets you trust by passing one or more dataset key to the datasets parameter. Dataset keys can be found using the <code>listDatasets</code> function:</p>
+
+<pre><code class="r"># View some of the datasets available
+datasets &lt;- listDatasets()
+head(datasets[45:50,]) # I select a group with short titles
+</code></pre>
+
+<pre><code>##                                             title      key
+## 46 Bedfordshire Butterflies (BNHS/BC) - 1976-2013 GA000481
+## 47     Bedfordshire Coleoptera (BNHS) - 1986-2013 GA000674
+## 48      Bedfordshire Diplopoda (BNHS) - 1975-1985 GA000675
+## 49   Bedfordshire Dormice (BNHS/BDG) -  2000-2012 GA000703
+## 50          Bedfordshire Fish (BNHS) -  1800-2013 GA000704
+## 51     Bedfordshire Flora (BNHS/BSBI) - 1904-2013 GA000482
+</code></pre>
+
+<p>A list of datasets can be passed in a similar way to a list of species keys.</p>
+
+<pre><code class="r"># Specify dataset keys
+datasets &lt;- c(&quot;SGB00001&quot;, &quot;GA000483&quot;)
+# Retrieve data
+occ &lt;- getOccurrences(tvk = &#39;NBNSYS0000007111&#39;,
+                      datasets = datasets,
+                      silent = TRUE
+                      acceptTandC = TRUE)
+</code></pre>
+
+<p>Dataset keys can also be found on the NBN gateway at <a href="https://data.nbn.org.uk/Datasets">https://data.nbn.org.uk/Datasets</a>. Clicking on a dataset reveals metadata for that dataset including the key, named &ldquo;Permanent key&rdquo;.</p>
+
+<h3>By Year</h3>
+
+<p>The range of years for which you want to extract data can be specified using the <code>startYear</code> and/or <code>endYear</code> parameters:</p>
+
+<pre><code class="r"># Get data for a specified species, from a specified dataset over
+# a specified time period
+dt &lt;- getOccurrences(tvks = &quot;NBNSYS0000007111&quot;,
+                     datasets = &quot;SGB00001&quot;, 
+                     startYear = 1990,
+                     endYear = 2006,
+                     silent = TRUE,
+                     acceptTandC = TRUE)
+</code></pre>
+
+<h3>By Vice-county</h3>
+
+<p>If data from a specific vice-county is required then the <code>VC</code> argument can be used. This takes the name of a vicecounty, a list of which can be found using <code>listVCs</code>:</p>
+
+<pre><code class="r"># View some of the vice-counties available
+VCs &lt;- listVCs()
+head(VCs)
+</code></pre>
+
+<pre><code>##             name identifier featureID
+## 1       Anglesey GA00034452   2583220
+## 2 Angus (Forfar) GA00034490   2583258
+## 3       Ayrshire GA00034475   2583243
+## 4     Banffshire GA00034494   2583262
+## 5   Bedfordshire GA00034430   2583198
+## 6      Berkshire GA00034422   2583190
+</code></pre>
+
+<p>Once you have decided the vice-county you wish to search within you can use the getOccurrence function like this:</p>
+
+<pre><code class="r"># Request data for one species from East Suffolk
+occ &lt;- getOccurrences(tvk = &#39;NBNSYS0000007111&#39;,
+                      VC = &#39;East Suffolk&#39;,
+                      silent = TRUE,
+                      acceptTandC = TRUE)
+</code></pre>
+
+<h2>Attribute Data</h2>
+
+<p>Some data held by the NBN has additional attributes to those we have been getting up until now. These attributes might include information such as abundance, life stage or sex. To get this additional data we need to use the <code>attributes</code> argument. This is not on by default as this search takes a little longer and can result in quite large tables.</p>
+
+<pre><code class="r">## I&#39;m going to get some data for Wild cat with attributes
+
+# First I need the TVK for wild cat
+tvkQuery &lt;- getTVKQuery(query = &#39;wildcat&#39;,
+                        top = TRUE)
+
+# Now I&#39;m going to get the data with attributes
+WCresults &lt;- getOccurrences(tvks = tvkQuery$ptaxonVersionKey,
+                            startYear = 1999,
+                            endYear = 1999,
+                            attributes = TRUE,
+                            silent = TRUE,
+                            acceptTandC = TRUE)
+
+# In this dataset you can see a number of columns starting &#39;attributes.*&#39;
+# These are the attributes columns specific to this data. 
+names(WCresults)
+</code></pre>
+
+<pre><code>##  [1] &quot;observationID&quot;           &quot;fullVersion&quot;            
+##  [3] &quot;datasetKey&quot;              &quot;surveyKey&quot;              
+##  [5] &quot;sampleKey&quot;               &quot;observationKey&quot;         
+##  [7] &quot;featureID&quot;               &quot;location&quot;               
+##  [9] &quot;resolution&quot;              &quot;taxonVersionKey&quot;        
+## [11] &quot;pTaxonVersionKey&quot;        &quot;pTaxonName&quot;             
+## [13] &quot;pTaxonAuthority&quot;         &quot;startDate&quot;              
+## [15] &quot;endDate&quot;                 &quot;sensitive&quot;              
+## [17] &quot;absence&quot;                 &quot;publicAttribute&quot;        
+## [19] &quot;dateTypekey&quot;             &quot;siteKey&quot;                
+## [21] &quot;siteName&quot;                &quot;recorder&quot;               
+## [23] &quot;determiner&quot;              &quot;attributes.Abundance&quot;   
+## [25] &quot;attributes.Comment&quot;      &quot;attributes.SampleMethod&quot;
+## [27] &quot;latitude&quot;                &quot;longitude&quot;
+</code></pre>
+
+<pre><code class="r">#Note not all observations have this attribute data
+WCresults[10:15,c(&#39;observationID&#39;,&#39;attributes.Comment&#39;,
+                  &#39;attributes.SampleMethod&#39;)]
+</code></pre>
+
+<pre><code>##    observationID    attributes.Comment attributes.SampleMethod
+## 10     219705983                  &lt;NA&gt;                    &lt;NA&gt;
+## 11     219706660                  &lt;NA&gt;                    &lt;NA&gt;
+## 12     365453294 Reported to recorder.       Field Observation
+## 13     365459000 Track/trail. VC: 108.       Field Observation
+## 14     365460230                             Field Observation
+## 15     365460484                 Seen.       Field Observation
+</code></pre>
+
+<h2>Dataset Information</h2>
+
+<p>Two functions allow access to additional information about datasets.</p>
+
+<h3>Data providers</h3>
+
+<p>For many uses of data from the NBN it is necessary to get permission from data owners. The <code>dataProviders</code> function returns the contact information for a given dataset:</p>
+
+<pre><code class="r"># Get contact details for two datasets
+providers &lt;- dataProviders(c(&#39;GA000426&#39;, &#39;GA000832&#39;))
+
+# A range of details are provided
+names(providers)
+</code></pre>
+
+<pre><code>## [1] &quot;id&quot;           &quot;name&quot;         &quot;address&quot;      &quot;postcode&quot;    
+## [5] &quot;contactName&quot;  &quot;contactEmail&quot; &quot;website&quot;
+</code></pre>
+
+<pre><code class="r"># This function is used internally to provide contact
+# information for getOccurrences searchs
+occ &lt;- getOccurrences(gridRef = &#39;TL3490&#39;,
+                      silent = TRUE,
+                      acceptTandC = TRUE)
+
+# The information is returned as an attribute &#39;providers&#39;
+providers &lt;- attr(occ, &#39;providers&#39;)
+
+# A row is given for each data provider
+nrow(providers)
+</code></pre>
+
+<pre><code>## [1] 8
+</code></pre>
+
+<h3>Taxa list</h3>
+
+<p>It can sometimes be helpful to have a list of taxa that are recorded in a given dataset here is an example of how this can be done:</p>
+
+<pre><code class="r"># Get taxa list for the ladybird survey
+taxalist &lt;- datasetTaxa(&#39;GA000312&#39;)
+
+# A range of details are provided
+names(taxalist)
+</code></pre>
+
+<pre><code>##  [1] &quot;taxonVersionKey&quot;      &quot;name&quot;                 &quot;authority&quot;           
+##  [4] &quot;languageKey&quot;          &quot;taxonOutputGroupKey&quot;  &quot;taxonOutputGroupName&quot;
+##  [7] &quot;commonName&quot;           &quot;gatewayRecordCount&quot;   &quot;href&quot;                
+## [10] &quot;observationCount&quot;     &quot;datasetKey&quot;           &quot;ptaxonVersionKey&quot;
+</code></pre>
+
+<pre><code class="r"># Here are some of those species
+head(taxalist$commonName)
+</code></pre>
+
+<pre><code>## [1] &quot;2-spot Ladybird&quot;     &quot;10-spot Ladybird&quot;    &quot;Eyed Ladybird&quot;      
+## [4] &quot;Water Ladybird&quot;      &quot;Larch Ladybird&quot;      &quot;Cream-spot Ladybird&quot;
+</code></pre>
+
+</body>
+
+</html>

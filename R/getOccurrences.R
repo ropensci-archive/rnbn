@@ -137,7 +137,7 @@ getOccurrences <- function(tvks=NULL, datasets=NULL, startYear=NULL,
     }
         
     ## Write out a statement about the T's & C's
-    if(!acceptTandC) message('IMPORTANT: https://data.nbn.org.uk/Terms By using this package you are agreeing to the Gateway Terms & Conditions and Privacy Policy. This message can be suppressed using the acceptTandC argument') 
+    if(!acceptTandC) message('IMPORTANT: By using this package you are agreeing to the Gateway Terms & Conditions and Privacy Policy (see https://data.nbn.org.uk/Terms). This message can be suppressed using the acceptTandC argument') 
     
     return(d_master)
 }
