@@ -27,9 +27,9 @@ If you have difficulties installing `rnbn` using this method try updating your v
 ### How to use the package
 --------------------------
 
-A good starting point is the vignette, you can download the pdf [via this link](https://github.com/JNCC-UK/rnbn/raw/master/inst/doc/rnbn.pdf). Alternatively once you have installed and loaded the package use the following command and click on the link to _User guides, package vignettes and other documentation_.
+A good starting point is the vignette, once you have installed and loaded the package use the following command to open the vignette.
 
-    help(package='rnbn')
+    vignette('rnbn_vignette')
 
 Once you have read the vignette, the help files for each function should guide you the rest of the way. If you have any questions just get in touch via email or using the [issues page](https://github.com/ropensci/rnbn/issues?state=open).
 
