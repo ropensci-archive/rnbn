@@ -6,8 +6,8 @@
 \usage{
 getOccurrences(tvks = NULL, datasets = NULL, startYear = NULL,
   endYear = NULL, VC = NULL, group = NULL, gridRef = NULL,
-  latLong = TRUE, acceptTandC = FALSE, silent = FALSE,
-  attributes = FALSE)
+  polygon = NULL, latlong = NULL, radius = 5000, latLong = TRUE,
+  acceptTandC = FALSE, silent = FALSE, attributes = FALSE)
 }
 \arguments{
 \item{tvks}{a list of TVKs which are strings of 16 alphanumeric characters.

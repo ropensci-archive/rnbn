@@ -51,6 +51,7 @@
 #' 
 getOccurrences <- function(tvks=NULL, datasets=NULL, startYear=NULL, 
                            endYear=NULL, VC=NULL, group=NULL, gridRef=NULL,
+                           polygon = NULL, latlong = NULL, radius = 5000,
                            latLong = TRUE, acceptTandC=FALSE, silent=FALSE,
                            attributes = FALSE) {
     
@@ -70,6 +71,12 @@ getOccurrences <- function(tvks=NULL, datasets=NULL, startYear=NULL,
         nTVK <- 1
     }
     
+    # If we are using a polygon we cannot have latlong
+    if(!is.null(polygon) & !is.null(latlong)) stop('polygon and latlong cannot be used at the same time')
+    
+    # Create a polygon from latlong and radius if desired
+    if(!is.null(latlong)) polygon <- createWKT(latlong[1], latlong[2], radius)
+    
     start <- 1
     d_master <- NULL
     
@@ -80,9 +87,14 @@ getOccurrences <- function(tvks=NULL, datasets=NULL, startYear=NULL,
         if(!is.null(tvks)){temp_tvks <-  na.omit(tvks[start:end])}else{temp_tvks=NULL}
         
         ## return a JSON object (list of lists)
-        json <- runnbnurl(service="obs", tvks=temp_tvks, datasets=datasets, 
-                          startYear=startYear, endYear=endYear, VC=VC,
-                          gridRef=gridRef, attributes=attributes) 
+        json <- runnbnurl(service = "obs",
+                          tvks = temp_tvks,
+                          datasets = datasets,
+                          startYear = startYear,
+                          endYear = endYear,
+                          VC = VC,
+                          gridRef = gridRef,
+                          attributes = attributes) 
         
         if (length(json) > 0) {
             ## find the unique names that are used in occ
