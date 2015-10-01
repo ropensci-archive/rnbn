@@ -56,7 +56,7 @@ getOccurrences <- function(tvks=NULL, datasets=NULL, startYear=NULL,
                            attributes = FALSE) {
     
     if(!is.null(tvks) & !is.null(group)) stop('group and tvks cannot be used at the same time')
-    if(is.null(tvks) & is.null(group) & is.null(gridRef)) stop('One of group, tvks or gridRef must be given')
+    if(is.null(tvks) & is.null(group) & is.null(gridRef) & is.null(polygon) & is.null(latlong)) stop('One of group, tvks or gridRef must be given')
     
     # If we are searching by group get the group tvks
     if(!is.null(group)) tvks <- getGroupSpeciesTVKs(group)
@@ -94,6 +94,7 @@ getOccurrences <- function(tvks=NULL, datasets=NULL, startYear=NULL,
                           endYear = endYear,
                           VC = VC,
                           gridRef = gridRef,
+                          polygon = polygon,
                           attributes = attributes) 
         
         if (length(json) > 0) {

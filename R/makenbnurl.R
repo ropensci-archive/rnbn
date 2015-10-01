@@ -45,7 +45,7 @@
 #' 
 makenbnurl <- function(service=NULL, tvks=NULL, datasets=NULL, feature=NULL,
                        startYear=NULL, endYear=NULL, list=NULL, VC=NULL, group=NULL,
-                       query=NULL, gridRef=NULL, attributes=FALSE) {
+                       query=NULL, gridRef=NULL, polygon=NULL, attributes=FALSE) {
 
     ##----------------------------------------------------------------------
     ## function to check that parameters are correctly formatted
@@ -134,6 +134,9 @@ makenbnurl <- function(service=NULL, tvks=NULL, datasets=NULL, feature=NULL,
                 }
                 if (!is.null(gridRef)) {
                     url <- paste(url, "&gridRef=", gridRef, sep="") 
+                }
+                if (!is.null(polygon)) {
+                  url <- paste(url, "&polygon=", gsub(' ', '%20', polygon), sep="") 
                 }
                 if (attributes) {
                     url <- paste(url, "&includeAttributes=true", sep="") 
