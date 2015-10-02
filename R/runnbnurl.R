@@ -32,11 +32,12 @@
 #' 
 runnbnurl <- function(service=NULL, tvks=NULL, datasets=NULL, feature=NULL,
                       startYear=NULL, endYear=NULL, list=NULL, VC=NULL, group=NULL,
-                      query=NULL, gridRef=NULL, attributes=FALSE) {
+                      query=NULL, gridRef=NULL, polygon=NULL, attributes=FALSE) {
     
     url <- makenbnurl(service=service, tvks=tvks, datasets=datasets, feature=feature,
                       startYear=startYear, endYear=endYear, list=list, VC=VC,
-                      group=group, query=query, gridRef=gridRef, attributes=attributes)
+                      group=group, query=query, gridRef=gridRef, polygon=polygon,
+                      attributes=attributes)
     
     
     # Run login script, this checks whether the user has a cookie that the webservice 

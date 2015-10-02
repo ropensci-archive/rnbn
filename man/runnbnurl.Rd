@@ -6,7 +6,8 @@
 \usage{
 runnbnurl(service = NULL, tvks = NULL, datasets = NULL, feature = NULL,
   startYear = NULL, endYear = NULL, list = NULL, VC = NULL,
-  group = NULL, query = NULL, gridRef = NULL, attributes = FALSE)
+  group = NULL, query = NULL, gridRef = NULL, polygon = NULL,
+  attributes = FALSE)
 }
 \arguments{
 \item{service}{the service you want to call. One of \code{"obs"} for the

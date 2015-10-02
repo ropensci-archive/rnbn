@@ -7,7 +7,8 @@
 listDatasets()
 }
 \value{
-A dataframe containing the names and keys of datasets on the NBN Gateway.
+A dataframe containing the names and keys of datasets on the NBN Gateway as
+well as a number of other attributes.
 }
 \description{
 Gives a dataframe of the datasets available from the NBN Gateway for reference.

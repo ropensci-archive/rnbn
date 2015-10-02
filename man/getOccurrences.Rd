@@ -6,7 +6,7 @@
 \usage{
 getOccurrences(tvks = NULL, datasets = NULL, startYear = NULL,
   endYear = NULL, VC = NULL, group = NULL, gridRef = NULL,
-  polygon = NULL, latlong = NULL, radius = 5000, latLong = TRUE,
+  polygon = NULL, point = NULL, radius = 5000, latLong = TRUE,
   acceptTandC = FALSE, silent = FALSE, attributes = FALSE)
 }
 \arguments{
@@ -29,6 +29,12 @@ within reptiles. Therefore it may be preferrable to search using a list TVKs aqu
 using getTVKQuery}
 
 \item{gridRef}{a string giving a gridreference in which to search for occurrences}
+
+\item{polygon}{ADD}
+
+\item{point}{ADD}
+
+\item{radius}{ADD}
 
 \item{latLong}{logical, if TRUE latitude and longitude are returned as additional columns.
 The conversion to latitude and longitude is currently accurate to about about ~20 meters,

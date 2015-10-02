@@ -20,6 +20,9 @@
 #' within reptiles. Therefore it may be preferrable to search using a list TVKs aquired
 #' using getTVKQuery
 #' @param gridRef a string giving a gridreference in which to search for occurrences
+#' @param polygon ADD
+#' @param point ADD
+#' @param radius ADD
 #' @param latLong logical, if TRUE latitude and longitude are returned as additional columns.
 #' The conversion to latitude and longitude is currently accurate to about about ~20 meters,
 #' greater than the vast majoring of records' precision.
@@ -51,12 +54,12 @@
 #' 
 getOccurrences <- function(tvks=NULL, datasets=NULL, startYear=NULL, 
                            endYear=NULL, VC=NULL, group=NULL, gridRef=NULL,
-                           polygon = NULL, latlong = NULL, radius = 5000,
+                           polygon = NULL, point = NULL, radius = 5000,
                            latLong = TRUE, acceptTandC=FALSE, silent=FALSE,
                            attributes = FALSE) {
     
     if(!is.null(tvks) & !is.null(group)) stop('group and tvks cannot be used at the same time')
-    if(is.null(tvks) & is.null(group) & is.null(gridRef)) stop('One of group, tvks or gridRef must be given')
+    if(is.null(tvks) & is.null(group) & is.null(gridRef) & is.null(polygon) & is.null(latlong)) stop('One of group, tvks or gridRef must be given')
     
     # If we are searching by group get the group tvks
     if(!is.null(group)) tvks <- getGroupSpeciesTVKs(group)
@@ -72,10 +75,10 @@ getOccurrences <- function(tvks=NULL, datasets=NULL, startYear=NULL,
     }
     
     # If we are using a polygon we cannot have latlong
-    if(!is.null(polygon) & !is.null(latlong)) stop('polygon and latlong cannot be used at the same time')
+    if(!is.null(polygon) & !is.null(point)) stop('polygon and latlong cannot be used at the same time')
     
     # Create a polygon from latlong and radius if desired
-    if(!is.null(latlong)) polygon <- createWKT(latlong[1], latlong[2], radius)
+    if(!is.null(point)) polygon <- createWKT(point[1], point[2], radius)
     
     start <- 1
     d_master <- NULL
@@ -94,6 +97,7 @@ getOccurrences <- function(tvks=NULL, datasets=NULL, startYear=NULL,
                           endYear = endYear,
                           VC = VC,
                           gridRef = gridRef,
+                          polygon = polygon,
                           attributes = attributes) 
         
         if (length(json) > 0) {
