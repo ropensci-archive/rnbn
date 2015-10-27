@@ -59,7 +59,7 @@ getOccurrences <- function(tvks=NULL, datasets=NULL, startYear=NULL,
                            attributes = FALSE) {
     
     if(!is.null(tvks) & !is.null(group)) stop('group and tvks cannot be used at the same time')
-    if(is.null(tvks) & is.null(group) & is.null(gridRef) & is.null(polygon) & is.null(latlong)) stop('One of group, tvks or gridRef must be given')
+    if(is.null(tvks) & is.null(group) & is.null(gridRef) & is.null(polygon) & is.null(point)) stop('One of group, tvks or gridRef must be given')
     
     # If we are searching by group get the group tvks
     if(!is.null(group)) tvks <- getGroupSpeciesTVKs(group)
@@ -74,10 +74,10 @@ getOccurrences <- function(tvks=NULL, datasets=NULL, startYear=NULL,
         nTVK <- 1
     }
     
-    # If we are using a polygon we cannot have latlong
-    if(!is.null(polygon) & !is.null(point)) stop('polygon and latlong cannot be used at the same time')
+    # If we are using a polygon we cannot have point
+    if(!is.null(polygon) & !is.null(point)) stop('polygon and point cannot be used at the same time')
     
-    # Create a polygon from latlong and radius if desired
+    # Create a polygon from point and radius if desired
     if(!is.null(point)) polygon <- createWKT(point[1], point[2], radius)
     
     start <- 1
