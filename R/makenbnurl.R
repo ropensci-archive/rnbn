@@ -104,7 +104,9 @@ makenbnurl <- function(service=NULL, tvks=NULL, datasets=NULL, feature=NULL,
                 } else {
                     #stop("tvks parameter is required")
                 }
-                if (is.character(datasets)) {
+                if (!is.null(datasets)) {
+                    # if factor change to character
+                    datasets <- as.character(datasets) 
                     if (checkID(datasets, list=TRUE, len=8)) {
                         url <- paste(url, "&datasetKey=", paste(datasets, collapse="&datasetKey="), sep="")
                     } else {
