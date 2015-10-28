@@ -1,0 +1,7 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+.travis.yml
+rnbn_cookies.txt
+README.html
+README.md
+appveyor.yml
