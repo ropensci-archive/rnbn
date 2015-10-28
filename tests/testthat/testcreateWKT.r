@@ -2,7 +2,7 @@ context("Test createWKT")
 
 test_that("Errors given", {
     expect_error(rnbn:::createWKT('tom', 'sam'), 'latitude and longitude must be numeric') 
-    expect_error(rnbn:::createWKT(51.6011023, -1.1278673, 'tom'), 'radius must be numeric (meters)')
+    expect_error(rnbn:::createWKT(51.6011023, -1.1278673, 'tom'), '*radius must be numeric (meters)*')
 })
 
 test_that("Success", {

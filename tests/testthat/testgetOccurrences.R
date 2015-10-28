@@ -10,8 +10,7 @@ test_that("Errors given", {
     expect_error(getOccurrences(tvks="NBNSYS0000002987", datasets="GA000373", startYear="1992", endYear="1991", silent=T), 'Error in makenbnurl*')
     expect_error(getOccurrences(tvks="NBNSYS0000002987", group="reptile", silent=T), 'Error in getOccurrences*')
     expect_error(getOccurrences(silent=T), 'Error in getOccurrences*')
-    expect_error(getOccurrences(silent=T), 'Error in getOccurrences*')
-    
+    expect_error(getOccurrences(polygon = 1, point = 1, silent=T), '*polygon and point cannot be used at the same time*')
 })
 
 dt <- getOccurrences(tvks="NBNSYS0000002987", datasets="GA000373", 
