@@ -20,9 +20,11 @@
 #' within reptiles. Therefore it may be preferrable to search using a list TVKs aquired
 #' using getTVKQuery
 #' @param gridRef a string giving a gridreference in which to search for occurrences
-#' @param polygon ADD
-#' @param point ADD
-#' @param radius ADD
+#' @param polygon A WKT (Well-Known Text) polygon string. Note that polygons containing
+#' many verticies (>100) are likely to create queries that exceed the NBN character limit
+#' @param point A vector of two numbers; latitude, longitude. Used with \code{radius}.
+#' @param radius A numeric distance, in meters used with \code{point} to create a circular
+#' search area.
 #' @param latLong logical, if TRUE latitude and longitude are returned as additional columns.
 #' The conversion to latitude and longitude is currently accurate to about about ~20 meters,
 #' greater than the vast majoring of records' precision.
