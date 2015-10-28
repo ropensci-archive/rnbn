@@ -14,7 +14,7 @@ You can install the CRAN version of rnbn by using install.packages:
 To install the development version of `rnbn`, it's easiest to use the `devtools` package:
 
     # install.packages("devtools")
-    # NOTE: If you have not installed devtools before you will need to restart you R
+    # NOTE: If you have not installed devtools before you may need to restart you R
     # session before installing to avoid problems
 
     library(devtools)
