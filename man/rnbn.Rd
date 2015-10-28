@@ -12,7 +12,7 @@ The National Biodiversity Network (NBN) is a repository for biodiversity data in
 Stuart Ball, JNCC \email{stuart.ball@jncc.gov.uk} and Tom August, CEH \email{tomaug@ceh.ac.uk}
 }
 \references{
-\url{http://http://data.nbn.org.uk/Documentation/Web_Services/}
+\url{https://data.nbn.org.uk/Documentation/Web_Services/Web_Services-REST/}
 }
 \keyword{package}
 
