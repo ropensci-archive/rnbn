@@ -8,9 +8,11 @@
 #' @return Polygon as a WKT string
 #' @import sp
 #' @import rgeos
+#' @import rgdal
+#' @export
 #' @examples
 #' 
-#' createWKT(51.6011023, -1.1278673)
+#' createWKT(51.6011023, -1.1278673, 1000)
 
 createWKT <- function(latitude, longitude, radius = 5000){
     

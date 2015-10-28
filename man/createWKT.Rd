@@ -20,6 +20,6 @@ Polygon as a WKT string
 Covert latitude and longitude plus a radius into a WKT string.
 }
 \examples{
-createWKT(51.6011023, -1.1278673)
+createWKT(51.6011023, -1.1278673, 1000)
 }
 

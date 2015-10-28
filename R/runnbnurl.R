@@ -22,6 +22,8 @@
 #' @param group a string giving the name of a group (see \code{\link{listGroups}})
 #' @param query a string used to perform a taxa search
 #' @param gridRef a string giving a gridreference in which to search for occurrences
+#' @param polygon A WKT (Well-Known Text) polygon string. Note that polygons containing
+#' many verticies (>100) are likely to create queries that exceed the NBN character limit
 #' @param attributes if \code{TRUE} then attribute data is returned
 #' @return a JSON object resulting from the call
 #' @author Stuart Ball, JNCC \email{stuart.ball@@jncc.gov.uk}

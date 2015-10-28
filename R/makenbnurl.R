@@ -31,6 +31,8 @@
 #' @param VC a string giving a vice-county name (see \code{\link{listVCs}})
 #' @param group a string giving the name of a group (see \code{\link{listGroups}})
 #' @param query a string used to search for taxa
+#' @param polygon A WKT (Well-Known Text) polygon string. Note that polygons containing
+#' many verticies (>100) are likely to create queries that exceed the NBN character limit
 #' @param gridRef a string giving a gridreference in which to search for occurrences
 #' @param attributes if \code{TRUE} then attribute data is returned
 #' @return the URL to call - a character string

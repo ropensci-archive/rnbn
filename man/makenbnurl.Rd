@@ -38,6 +38,9 @@ give the list required as a part of the \code{"list"} service}
 
 \item{gridRef}{a string giving a gridreference in which to search for occurrences}
 
+\item{polygon}{A WKT (Well-Known Text) polygon string. Note that polygons containing
+many verticies (>100) are likely to create queries that exceed the NBN character limit}
+
 \item{attributes}{if \code{TRUE} then attribute data is returned}
 }
 \value{

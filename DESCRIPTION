@@ -10,7 +10,7 @@ URL: https://github.com/ropensci/rnbn
 BugReports: https://github.com/ropensci/rnbn/issues
 License: MIT + file LICENSE
 Depends: R (>= 3.0.0)
-Imports: httr
+Imports: httr, rgeos, sp, rgdal
 Suggests: testthat (>= 0.8.0), roxygen2, knitr
 VignetteBuilder: knitr
 LazyData: TRUE
