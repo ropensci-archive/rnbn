@@ -8,8 +8,7 @@ before_script:
 - "./travis-tool.sh bootstrap"
 - "./travis-tool.sh install_deps"
 - sudo apt-get update -qq
-- sudo apt-get install -y gdal-bin libgdal-dev libgdal1-dev netcdf-bin libproj-dev
-  libgdal1h libhdf5-serial-dev libcurl4-gnutls-dev libdap-dev libhdf5-dev libhdf5-7
+- sudo apt-get install -y -f libgdal1-dev libproj-dev
 
 notifications:
   email:
