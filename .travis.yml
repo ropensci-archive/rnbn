@@ -7,6 +7,7 @@ before_script:
 - chmod 755 ./travis-tool.sh
 - ./travis-tool.sh bootstrap
 - ./travis-tool.sh install_deps
+- sudo apt-get install libv8-dev
 
 r_binary_packages:
   - rgdal
