@@ -8,7 +8,9 @@ before_script:
 - "./travis-tool.sh bootstrap"
 - "./travis-tool.sh install_deps"
 - sudo apt-get update
-- sudo apt-get install gdal-bin
+- sudo apt-get install aptitude
+- sudo aptitude install -y libgdal-dev
+- sudo aptitude install libproj-dev
 
 notifications:
   email:
