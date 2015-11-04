@@ -28,8 +28,8 @@ occurrences have been recorded) given its 'featureID'.
 * `getGroupSpeciesTVKs` given the name of a group (see `listGroups`)
 this function returns the pTVKs (preferred taxon version keys) for all members
 of that group. This is currently restricted to returning up to 5000 results.
-* `getOccurrences` get occurrences for a particular taxa, grid cell or
-species group and returns a data.frame containing the occurrences. Optionally,
+* `getOccurrences` get occurrences for a particular taxa, grid cell,
+species group, or polygon and returns a data.frame containing the occurrences. Optionally,
 the results can be filtered by dataset, date and vicecounty.
 * `getTaxonomy` given a TVK, this function gets details of the taxonomic
 hierarchy of a taxon.
@@ -237,22 +237,82 @@ occ[1:10, c("pTaxonName", "location")]
 ```
 
 ```
-##                    pTaxonName location
-## 1            Ischnura elegans   TL3490
-## 2            Erythromma najas   TL3490
-## 3       Orthetrum cancellatum   TL3490
-## 4              Talpa europaea   TL3490
-## 5      Homalothecium sericeum TL342906
-## 6    Bryum bicolor sensu lato TL342905
-## 7  Rhytidiadelphus squarrosus TL340906
-## 8         Ceratodon purpureus TL340906
-## 9         Ceratodon purpureus TL340906
-## 10         Dicranum scoparium TL340906
+##                pTaxonName location
+## 1        Erythromma najas   TL3490
+## 2          Aeshna grandis   TL3490
+## 3           Aeshna cyanea   TL3490
+## 4            Aeshna mixta   TL3490
+## 5   Orthetrum cancellatum   TL3490
+## 6    Sympetrum striolatum   TL3490
+## 7    Sympetrum sanguineum   TL3490
+## 8        Ischnura elegans   TL3490
+## 9          Talpa europaea   TL3490
+## 10 Homalothecium sericeum TL342906
 ```
 
 
 This search will work with a range of grid reference resolutions and for grid references in OSNI and OSGB format.
 
+### Using polygons
+
+You might wish to search within a polygon rather than a grid reference. This is supported through the use of well-known text format polygons. You can create these using the package `rgeos` R packages (see function `writeWKT`), or [via websites](http://arthur-e.github.io/Wicket/sandbox-gmaps3.html)
+
+
+```r
+# Create a WKT polygon
+# This is a small square polygon in Oxfordshire
+myPolygon <- "POLYGON((-1.120305061340332 51.60510713031779,-1.1186742782592773 51.590978433037144,-1.098933219909668 51.59129837670387,-1.0994482040405273 51.604840591807104,-1.120305061340332 51.60510713031779))"
+
+# Retrieve data from NBN using a polygon
+occ <- getOccurrences(polygon = myPolygon,
+                      silent = TRUE,
+                      acceptTandC = TRUE)
+
+occ[1:10, c("pTaxonName", "location")]
+```
+
+```
+##                     pTaxonName location
+## 1                 Cottus gobio     SU68
+## 2  Pseudachorutes corticicolus     SU68
+## 3             Knautia arvensis     SU68
+## 4               Galium mollugo     SU68
+## 5             Bromopsis erecta     SU68
+## 6          Ranunculus bulbosus     SU68
+## 7             Senecio jacobaea     SU68
+## 8           Leontodon hispidus     SU68
+## 9             Knautia arvensis     SU68
+## 10            Senecio jacobaea     SU68
+```
+
+
+### Using a point and radius
+
+You might wish to search for records witin a radius of a certain location, for this you can use the `point` and `radius` arguements.
+
+The point is given as a numeric vector of length two, latitude then longitude (e.g. `c(51.6011023, -1.1278673)`). You can also supply a radius in meters. With this information rnbn will search for records that fall within a circular area around your point with the given radius.
+
+
+```r
+# Retrieve data from NBN using a point and radius
+occ <- getOccurrences(point = c(51.603181, -1.109945),
+                      radius = 1000,
+                      silent = TRUE,
+                      acceptTandC = TRUE)
+
+# Where do these records come from?
+head(sort(table(occ$siteName), decreasing = TRUE))
+```
+
+```
+## 
+##              Site name unavailable                        Oxfordshire 
+##                               5438                                238 
+##                Site name protected                        Wallingford 
+##                                218                                155 
+##                    CEH Wallingford Little Court & Wroxhills Wood area 
+##                                100                                 56
+```
 
 ### Using species group
 
@@ -308,12 +368,26 @@ head(datasets[45:50,]) # I select a group with short titles
 
 ```
 ##                                             title      key
-## 46 Bedfordshire Butterflies (BNHS/BC) - 1976-2013 GA000481
-## 47     Bedfordshire Coleoptera (BNHS) - 1986-2013 GA000674
-## 48      Bedfordshire Diplopoda (BNHS) - 1975-1985 GA000675
-## 49   Bedfordshire Dormice (BNHS/BDG) -  2000-2012 GA000703
-## 50          Bedfordshire Fish (BNHS) -  1800-2013 GA000704
-## 51     Bedfordshire Flora (BNHS/BSBI) - 1904-2013 GA000482
+## 46    Bedfordshire Brown Hares (BNHS) - 1990-2013 GA001169
+## 47     Bedfordshire Bumblebees (BNHS) - 2006-2014 GA000700
+## 48 Bedfordshire Butterflies (BNHS/BC) - 1976-2014 GA000481
+## 49     Bedfordshire Coleoptera (BNHS) - 1986-2014 GA000674
+## 50      Bedfordshire Diplopoda (BNHS) - 1975-1985 GA000675
+## 51   Bedfordshire Dormice (BNHS/BDG) -  2000-2012 GA000703
+##                                                                                                                                                                                                                                                                                                                                         description
+## 46                                                                                                                                                                                                                                                                                                                    Brown Hare (Lepus europaeus).
+## 47                                                                                                                                                                                                                                                                                                                                      Bumblebees.
+## 48 Butterflies.\r\nMany of the records within this dataset are also on the NBN Gateway in the datasets uploaded by Butterfly Conservation, however this dataset also contains more recent records and all records (including the recent ones) are displayed at the finest public resolution of 2km negotiated nationally by Butterfly Conservation.
+## 49                                                                                                                                                                                                                                                                                                                            Coleoptera (Beetles).
+## 50                                                                                                                                                                                                                                                                                                                           Diplopoda (Millipedes)
+## 51                                                                                                                                                                                              Hazel/Common Dormouse (<i>Muscardinus avellanarius</i>)\r\n<br />\r\n(There are no Edible Dormouse (<i>Glis glis</i>) records within this dataset).
+##                                         href datasetLicence
+## 46 https://data.nbn.org.uk/Datasets/GA001169           <NA>
+## 47 https://data.nbn.org.uk/Datasets/GA000700           <NA>
+## 48 https://data.nbn.org.uk/Datasets/GA000481           <NA>
+## 49 https://data.nbn.org.uk/Datasets/GA000674           <NA>
+## 50 https://data.nbn.org.uk/Datasets/GA000675           <NA>
+## 51 https://data.nbn.org.uk/Datasets/GA000703           <NA>
 ```
 
 
@@ -441,13 +515,13 @@ WCresults[10:15,c('observationID','attributes.Comment',
 ```
 
 ```
-##    observationID    attributes.Comment attributes.SampleMethod
-## 10     219705983                  <NA>                    <NA>
-## 11     219706660                  <NA>                    <NA>
-## 12     365453294 Reported to recorder.       Field Observation
-## 13     365459000 Track/trail. VC: 108.       Field Observation
-## 14     365460230                             Field Observation
-## 15     365460484                 Seen.       Field Observation
+##    observationID     attributes.Comment attributes.SampleMethod
+## 10     438392768  Reported to recorder.       Field Observation
+## 11     438398476  Track/trail. VC: 108.       Field Observation
+## 12     438399749                              Field Observation
+## 13     438399992                  Seen.       Field Observation
+## 14     438400312                              Field Observation
+## 15     438409442 Dead on Road. VC: 108.       Field Observation
 ```
 
 
@@ -492,7 +566,7 @@ nrow(providers)
 ```
 
 ```
-## [1] 8
+## [1] 9
 ```
 
 

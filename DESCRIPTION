@@ -3,14 +3,14 @@ Type: Package
 Title: Access NBN Data
 Version: 1.0.3
 Date: 2014-12-12
-Author: Stuart Ball & Tom August
+Author: Tom August & Stuart Ball
 Maintainer: Tom August <tomaug@ceh.ac.uk>
 Description: Access to data held by the National Biodiversity Network (NBN, www.nbn.org.uk). The NBN acts as a data warehouse for biological records data in the UK and is the UK node of GBIF (Global Biodiversity Information Facility). In this package NBN data is accessed via its web-services. 
 URL: https://github.com/ropensci/rnbn
 BugReports: https://github.com/ropensci/rnbn/issues
 License: MIT + file LICENSE
 Depends: R (>= 3.0.0)
-Imports: httr
+Imports: httr, rgeos, rgdal, sp
 Suggests: testthat (>= 0.8.0), roxygen2, knitr
 VignetteBuilder: knitr
 LazyData: TRUE

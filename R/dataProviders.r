@@ -66,11 +66,19 @@ dataProviders <- function(datasets=NULL) {
                 }
             }
         
-        if(is.null(org_master)){org_master <- organisation} else{org_master <- merge(org_master, organisation, all = TRUE)}
-    
+        if(is.null(org_master)){
+          
+          org_master <- organisation
+          
         } else {
-            warning(paste('Dataset',dataset,'returned no taxa, check this is spelt correctly'))            
+          
+          org_master <- merge(org_master, organisation, all = TRUE)
+          
         }
+    
+      } else {
+          warning(paste('Dataset',dataset,'returned no taxa, check this is spelt correctly'))            
+      }
     }    
     
     # If we have some data do some tidying up
