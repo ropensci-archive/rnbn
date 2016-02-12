@@ -25,6 +25,7 @@
 #' @param polygon A WKT (Well-Known Text) polygon string. Note that polygons containing
 #' many verticies (>100) are likely to create queries that exceed the NBN character limit
 #' @param attributes if \code{TRUE} then attribute data is returned
+#' @param ... Further named parameters passed on to \code{\link[httr]{GET}}
 #' @return a JSON object resulting from the call
 #' @author Stuart Ball, JNCC \email{stuart.ball@@jncc.gov.uk}
 #' @examples \dontrun{ 
@@ -34,7 +35,7 @@
 #' 
 runnbnurl <- function(service=NULL, tvks=NULL, datasets=NULL, feature=NULL,
                       startYear=NULL, endYear=NULL, list=NULL, VC=NULL, group=NULL,
-                      query=NULL, gridRef=NULL, polygon=NULL, attributes=FALSE) {
+                      query=NULL, gridRef=NULL, polygon=NULL, attributes=FALSE, ...) {
     
     url <- makenbnurl(service=service, tvks=tvks, datasets=datasets, feature=feature,
                       startYear=startYear, endYear=endYear, list=list, VC=VC,
@@ -48,7 +49,7 @@ runnbnurl <- function(service=NULL, tvks=NULL, datasets=NULL, feature=NULL,
     
     #print(url)
     
-    resp_url <- GET(url)
+    resp_url <- GET(url, ...)
     
     if(!grepl("^2[[:digit:]]{2}$", resp_url$status_code)) stop(paste(http_status(resp_url)$message,
                                                                      '\nError accessing',
