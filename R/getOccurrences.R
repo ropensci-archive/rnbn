@@ -62,6 +62,9 @@ getOccurrences <- function(tvks=NULL, datasets=NULL, startYear=NULL,
     
     if(!is.null(tvks) & !is.null(group)) stop('group and tvks cannot be used at the same time')
     if(is.null(tvks) & is.null(group) & is.null(gridRef) & is.null(polygon) & is.null(point)) stop('One of group, tvks or gridRef must be given')
+    if(is.data.frame(tvks) && "pTaxonVersionKey" %in% names(tvks)){
+      tvks <- as.character(tvks$pTaxonVersionKey)
+    }
     
     # If we are searching by group get the group tvks
     if(!is.null(group)) tvks <- getGroupSpeciesTVKs(group)
