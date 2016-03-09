@@ -51,6 +51,23 @@ test_that("Check multi TVK search", {
     
 })
 
+test_that("query uses ptaxonVersionKey if tvks is a data frame (from getTVKQuery)",{
+  if(!file.exists('~/rnbn_test.rdata')) skip('login details not found')
+  # login
+  load('~/rnbn_test.rdata')
+  nbnLogin(username = UN_PWD$username, password = UN_PWD$password)
+  
+  dt <- getOccurrences(tvks="NBNSYS0000002987", datasets="GA000373", 
+                       startYear="1990", endYear="1991", acceptTandC=TRUE, silent = TRUE)
+  dt2 <- getOccurrences(tvks=data.frame(entityType="taxon", searchMatchTitle="Silene uniflora", ptaxonVersionKey="NBNSYS0000002987"), datasets="GA000373", 
+                       startYear="1990", endYear="1991", acceptTandC=TRUE, silent = TRUE)
+  expect_that(dt, equals(dt2))
+})
+
+test_that("data frames missing pTaxonVersionKey column are rejected",{
+  expect_error(getOccurrences(data.frame(a=1:10, b=1:10)), "column missing")
+})
+
 
 test_that("Check group search", {
     if(!file.exists('~/rnbn_test.rdata')) skip('login details not found')
