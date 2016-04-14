@@ -1,6 +1,6 @@
 context("Test datePart")
 test_that("Parameters are checked", {
-    expect_error(datePart("2012-06-23", "2012-06-23", "D", "xx"), "Error in match.arg.*")
+    expect_error(datePart("2012-06-23", "2012-06-23", "D", "xx"), "'arg' should be one of*")
 })
 
 test_that("Extraction works as expected", {

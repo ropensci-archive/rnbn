@@ -1,6 +1,6 @@
 context("Test gridCoords")
 test_that("Parameters are not valid", {
-    expect_error(gridCoords("NZ12", "inches"), "Error in match.arg.*")
+    expect_error(gridCoords("NZ12", "inches"), "'arg' should be one of*")
     expect_error(gridCoords("NZ123", "km"), "must be an even number of digits")
     expect_error(gridCoords("NZ123-", "m"), "not a valid grid reference string")
     expect_error(gridCoords("N123"), "must be an even number of digits")
