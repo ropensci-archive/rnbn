@@ -4,10 +4,12 @@
 \alias{getFeature}
 \title{Get details for a given feature}
 \usage{
-getFeature(featureID = NULL)
+getFeature(featureID = NULL, ...)
 }
 \arguments{
 \item{featureID}{A the featureID as a string}
+
+\item{...}{Further named parameters passed on to \code{\link[httr]{GET}}}
 }
 \value{
 A list containing the JSON object returned by the NBN Gateway.

@@ -6,6 +6,7 @@
 #' @param datasets A string (or list of strings) giving the dataset keys to search within.
 #' Use \code{\link{listDatasets}} to find dataset keys, or visit the NBN gateway
 #' \url{https://data.nbn.org.uk/Datasets}
+#' @param ... Further named parameters passed on to \code{\link[httr]{GET}}
 #' @return a data.frame giving the details of data providers 
 #' @author Stuart Ball, JNCC \email{stuart.ball@@jncc.gov.uk} and Tom August, CEH \email{tomaug@@ceh.ac.uk}
 #' @seealso \code{\link{listDatasets}}
@@ -15,7 +16,7 @@
 #' 
 #' }
 #' 
-dataProviders <- function(datasets=NULL) {
+dataProviders <- function(datasets=NULL, ...) {
     
     # A function for removing html from strings
     cleanFun <- function(htmlString) {
@@ -33,7 +34,7 @@ dataProviders <- function(datasets=NULL) {
         
     for(dataset in datasets){
         
-        json <- runnbnurl(service="p", datasets=dataset)
+        json <- runnbnurl(service="p", datasets=dataset, ...)
         
         if (length(json) > 0 & class(json) == 'list'){
             

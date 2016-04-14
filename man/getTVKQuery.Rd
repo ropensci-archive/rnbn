@@ -5,7 +5,7 @@
 \title{Gets TVKs for a query}
 \usage{
 getTVKQuery(query = NULL, species_only = TRUE, rec_only = FALSE,
-  top = FALSE)
+  top = FALSE, ...)
 }
 \arguments{
 \item{query}{A query string. This can range from latin binomials to partial english names.}
@@ -20,6 +20,8 @@ taxa with 'recommended' name status.}
 \item{top}{Logical, if \code{TRUE} only the top answer is returned. This is what the
 gateway thinks you are most likely to be after but may not always be right, use with
 care!}
+
+\item{...}{Further named parameters passed on to \code{\link[httr]{GET}}}
 }
 \value{
 A dataframe containing information on each taxa entry that matches the query 

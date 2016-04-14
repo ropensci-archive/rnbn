@@ -4,10 +4,12 @@
 \alias{getTaxonomy}
 \title{Get the taxonomical heirarchy for a given taxon}
 \usage{
-getTaxonomy(tvks = NULL)
+getTaxonomy(tvks = NULL, ...)
 }
 \arguments{
 \item{tvks}{A Taxon Version Key (TVK) which is a 16-character string ID}
+
+\item{...}{Further named parameters passed on to \code{\link[httr]{GET}}}
 }
 \value{
 A dataframe containing the JSON object returned by the NBN Gateway.

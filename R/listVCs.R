@@ -3,6 +3,7 @@
 #' Gives a dataframe of the Watsonian vice-counties and their keys for reference.
 #' 
 #' @export
+#' @param ... Further named parameters passed on to \code{\link[httr]{GET}}
 #' @return A dataframe containing the name and featureID of each vice-county.
 #' @author Stuart Ball, JNCC \email{stuart.ball@@jncc.gov.uk}
 #' @seealso \code{\link{getFeature}}, \code{\link{getOccurrences}}
@@ -10,10 +11,12 @@
 #'  t <- listVCs()
 #' }
 
-listVCs <- function() {
+listVCs <- function(...) {
     
     ## return a JSON object (list of lists)
-    json <- runnbnurl(service="list",list='siteBoundaryDatasets/GA000344/siteBoundaries')
+    json <- runnbnurl(service="list",
+                      list='siteBoundaryDatasets/GA000344/siteBoundaries',
+                      ...)
             
     if (length(json) > 0) {
         ## find the unique names that are used in occ

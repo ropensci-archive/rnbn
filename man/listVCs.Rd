@@ -4,7 +4,10 @@
 \alias{listVCs}
 \title{Get list of vice-counties}
 \usage{
-listVCs()
+listVCs(...)
+}
+\arguments{
+\item{...}{Further named parameters passed on to \code{\link[httr]{GET}}}
 }
 \value{
 A dataframe containing the name and featureID of each vice-county.

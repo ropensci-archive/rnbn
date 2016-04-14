@@ -6,6 +6,7 @@
 #' @param datasets A string (or list of strings) giving the dataset keys to search within.
 #' Use \code{\link{listDatasets}} to find dataset keys, or visit the NBN gateway
 #' \url{https://data.nbn.org.uk/Datasets}
+#' @param ... Further named parameters passed on to \code{\link[httr]{GET}}
 #' @return a data.frame of taxa details 
 #' @author Stuart Ball, JNCC \email{stuart.ball@@jncc.gov.uk} and Tom August, CEH \email{tomaug@@ceh.ac.uk}
 #' @seealso \code{\link{listDatasets}}
@@ -15,7 +16,7 @@
 #' 
 #' }
 #' 
-datasetTaxa <- function(datasets=NULL) {
+datasetTaxa <- function(datasets=NULL, ...) {
     
     if(is.null(datasets)) stop('datasets parameter cannot be NULL')
    
@@ -24,7 +25,7 @@ datasetTaxa <- function(datasets=NULL) {
     for(dataset in datasets){
         
         ## return a JSON object (list of lists)
-        json <- runnbnurl(service="d", datasets=dataset) 
+        json <- runnbnurl(service="d", datasets=dataset, ...) 
 
         if (length(json) > 0) {
             ## find the unique names that are used

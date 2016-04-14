@@ -4,7 +4,10 @@
 \alias{listGroups}
 \title{Get group definitions}
 \usage{
-listGroups()
+listGroups(...)
+}
+\arguments{
+\item{...}{Further named parameters passed on to \code{\link[httr]{GET}}}
 }
 \value{
 A dataframe containing the definitions of groups on the NBN Gateway

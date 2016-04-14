@@ -3,6 +3,7 @@
 #' Gives a dataframe of the group definitions from the NBN Gateway for reference.
 #' 
 #' @export
+#' @param ... Further named parameters passed on to \code{\link[httr]{GET}}
 #' @return A dataframe containing the definitions of groups on the NBN Gateway
 #' @author Stuart Ball, JNCC \email{stuart.ball@@jncc.gov.uk}
 #' @seealso \code{\link{getFeature}}, \code{\link{getOccurrences}}
@@ -10,10 +11,10 @@
 #'  t <- listGroups()
 #' }
 
-listGroups <- function() {
+listGroups <- function(...) {
     
     ## return a JSON object (list of lists)
-    json <- runnbnurl(service="list",list='taxonOutputGroups')
+    json <- runnbnurl(service="list",list='taxonOutputGroups', ...)
     
     if (length(json) > 0) {
         ## find the unique names that are used in occ

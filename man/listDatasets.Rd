@@ -4,7 +4,10 @@
 \alias{listDatasets}
 \title{Get Dataset definitions}
 \usage{
-listDatasets()
+listDatasets(...)
+}
+\arguments{
+\item{...}{Further named parameters passed on to \code{\link[httr]{GET}}}
 }
 \value{
 A dataframe containing the names and keys of datasets on the NBN Gateway as

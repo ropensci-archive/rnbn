@@ -4,10 +4,12 @@
 \alias{getGroupSpeciesTVKs}
 \title{Gets TVKs for a group}
 \usage{
-getGroupSpeciesTVKs(name)
+getGroupSpeciesTVKs(name, ...)
 }
 \arguments{
 \item{name}{A string for a group on the NBN gateway (e.g. 'reptile')}
+
+\item{...}{Further named parameters passed on to \code{\link[httr]{GET}}}
 }
 \value{
 A vector of TVKs as characters.

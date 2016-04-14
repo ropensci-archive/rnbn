@@ -4,7 +4,10 @@
 \alias{listOrganisations}
 \title{Get organisation definitions}
 \usage{
-listOrganisations()
+listOrganisations(...)
+}
+\arguments{
+\item{...}{Further named parameters passed on to \code{\link[httr]{GET}}}
 }
 \value{
 A dataframe containing the definitions of organisations on the NBN Gateway, 

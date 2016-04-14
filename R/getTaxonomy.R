@@ -6,6 +6,7 @@
 #' 
 #' @export
 #' @param tvks A Taxon Version Key (TVK) which is a 16-character string ID
+#' @param ... Further named parameters passed on to \code{\link[httr]{GET}}
 #' @return A dataframe containing the JSON object returned by the NBN Gateway.
 #' @author Tom August, CEH \email{tom.august@@ceh.ac.uk}
 #' @seealso \code{\link{getFeature}}, \code{\link{getOccurrences}}
@@ -13,10 +14,10 @@
 #'  t <- getTaxonomy("NHMSYS0000528028") # Myotis daubentonii (Daubenton's Bat)
 #' }
 
-getTaxonomy <- function(tvks=NULL) {
+getTaxonomy <- function(tvks=NULL, ...) {
     
     ## return a JSON object (list of lists)
-    json <- runnbnurl(service="ancestry", tvks=tvks) 
+    json <- runnbnurl(service="ancestry", tvks=tvks, ...) 
     
     if (length(json) > 0) {
         ## find the unique names that are used in occ

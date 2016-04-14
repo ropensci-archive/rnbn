@@ -4,12 +4,14 @@
 \alias{datasetTaxa}
 \title{Get a list of taxa present in a given dataset}
 \usage{
-datasetTaxa(datasets = NULL)
+datasetTaxa(datasets = NULL, ...)
 }
 \arguments{
 \item{datasets}{A string (or list of strings) giving the dataset keys to search within.
 Use \code{\link{listDatasets}} to find dataset keys, or visit the NBN gateway
 \url{https://data.nbn.org.uk/Datasets}}
+
+\item{...}{Further named parameters passed on to \code{\link[httr]{GET}}}
 }
 \value{
 a data.frame of taxa details

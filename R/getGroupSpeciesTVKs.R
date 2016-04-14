@@ -6,6 +6,7 @@
 #' 
 #' @export
 #' @param name A string for a group on the NBN gateway (e.g. 'reptile')
+#' @param ... Further named parameters passed on to \code{\link[httr]{GET}}
 #' @return A vector of TVKs as characters.
 #' @author Stuart Ball, JNCC \email{stuart.ball@@jncc.gov.uk}
 #' @seealso \code{\link{getFeature}}, \code{\link{getOccurrences}}, \code{\link{getTVKQuery}}
@@ -13,11 +14,11 @@
 #'  t <- getGroupSpeciesTVKs('reptile')
 #' }
 #' 
-getGroupSpeciesTVKs<-function(name){
+getGroupSpeciesTVKs<-function(name, ...){
     
     groupID<-getGroupID(name)
     
-    json <- runnbnurl(service="species", group=groupID)
+    json <- runnbnurl(service="species", group=groupID, ...)
     
     json<-json$results
     
