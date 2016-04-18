@@ -34,6 +34,7 @@
 #' @param silent If \code{TRUE} batch request information is supressed
 #' @param attributes If \code{FALSE} then attribute data is not returned, this may
 #' improve the speed of large requests.
+#' @param ... Further named parameters passed on to \code{\link[httr]{GET}}
 #' @return a data.frame of occurence records. Details of the data providers that 
 #' contributed to the data returned is given as a 'providers' attribute
 #' @author Stuart Ball, JNCC \email{stuart.ball@@jncc.gov.uk} and Tom August, CEH \email{tomaug@@ceh.ac.uk}
@@ -58,7 +59,7 @@ getOccurrences <- function(tvks=NULL, datasets=NULL, startYear=NULL,
                            endYear=NULL, VC=NULL, group=NULL, gridRef=NULL,
                            polygon = NULL, point = NULL, radius = 5000,
                            latLong = TRUE, acceptTandC=FALSE, silent=FALSE,
-                           attributes = FALSE) {
+                           attributes = FALSE, ...) {
     
     if(!is.null(tvks) & !is.null(group)) stop('group and tvks cannot be used at the same time')
     if(is.null(tvks) & is.null(group) & is.null(gridRef) & is.null(polygon) & is.null(point)) stop('One of group, tvks or gridRef must be given')
@@ -105,7 +106,8 @@ getOccurrences <- function(tvks=NULL, datasets=NULL, startYear=NULL,
                           VC = VC,
                           gridRef = gridRef,
                           polygon = polygon,
-                          attributes = attributes) 
+                          attributes = attributes,
+                          ...) 
         
         if (length(json) > 0) {
             ## find the unique names that are used in occ

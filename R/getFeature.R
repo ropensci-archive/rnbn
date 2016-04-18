@@ -7,6 +7,7 @@
 #' 
 #' @export
 #' @param featureID A the featureID as a string
+#' @param ... Further named parameters passed on to \code{\link[httr]{GET}}
 #' @return A list containing the JSON object returned by the NBN Gateway.
 #' @author Stuart Ball, JNCC \email{stuart.ball@@jncc.gov.uk}
 #' @seealso \code{\link{getOccurrences}}
@@ -15,6 +16,6 @@
 #'  t['label']  ## [1] "SN413499"
 #' }
 #' 
-getFeature <- function(featureID=NULL) {
-    runnbnurl(service="feature", feature=featureID)
+getFeature <- function(featureID=NULL, ...) {
+    runnbnurl(service="feature", feature=featureID, ...)
 }

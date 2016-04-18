@@ -5,11 +5,11 @@ test_that("Errors given", {
     # login
     load('~/rnbn_test.rdata')
     nbnLogin(username = UN_PWD$username, password = UN_PWD$password)
-    expect_error(getOccurrences(tvks="badger", silent=T), 'Error in makenbnurl*') 
-    expect_error(getOccurrences(tvks="NBNSYS0000002987", datasets="G3", silent=T), 'Error in makenbnurl*')
-    expect_error(getOccurrences(tvks="NBNSYS0000002987", datasets="GA000373", startYear="1992", endYear="1991", silent=T), 'Error in makenbnurl*')
-    expect_error(getOccurrences(tvks="NBNSYS0000002987", group="reptile", silent=T), 'Error in getOccurrences*')
-    expect_error(getOccurrences(silent=T), 'Error in getOccurrences*')
+    expect_error(getOccurrences(tvks="badger", silent=T), 'tvks parameter is incorrect') 
+    expect_error(getOccurrences(tvks="NBNSYS0000002987", datasets="G3", silent=T), 'datasets parameter is incorrect')
+    expect_error(getOccurrences(tvks="NBNSYS0000002987", datasets="GA000373", startYear="1992", endYear="1991", silent=T), 'startYear cannot be later than endYear')
+    expect_error(getOccurrences(tvks="NBNSYS0000002987", group="reptile", silent=T), 'group and tvks cannot be used at the same time')
+    expect_error(getOccurrences(silent=T), 'One of group, tvks or gridRef must be given')
     expect_error(getOccurrences(polygon = 1, point = 1, silent=T), '*polygon and point cannot be used at the same time*')
 })
 

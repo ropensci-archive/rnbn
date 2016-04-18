@@ -3,6 +3,7 @@
 #' Gives a dataframe of the datasets available from the NBN Gateway for reference.
 #' 
 #' @export
+#' @param ... Further named parameters passed on to \code{\link[httr]{GET}}
 #' @return A dataframe containing the names and keys of datasets on the NBN Gateway as
 #' well as a number of other attributes.
 #' @author Stuart Ball, JNCC \email{stuart.ball@@jncc.gov.uk}
@@ -11,10 +12,10 @@
 #'  t <- listDatasets()
 #' }
 
-listDatasets <- function() {
+listDatasets <- function(...) {
     
     ## return a JSON object (list of lists)
-    json <- runnbnurl(service="list",list='datasets')
+    json <- runnbnurl(service="list",list='datasets', ...)
         
     if (length(json) > 0) {
       #n <- unique(unlist(c(sapply(json, names))))

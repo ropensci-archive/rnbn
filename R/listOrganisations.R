@@ -3,6 +3,7 @@
 #' Gives a dataframe of the organisation definitions from the NBN Gateway for reference.
 #' 
 #' @export
+#' @param ... Further named parameters passed on to \code{\link[httr]{GET}}
 #' @return A dataframe containing the definitions of organisations on the NBN Gateway, 
 #'         including their web address where available
 #' @author Stuart Ball, JNCC \email{stuart.ball@@jncc.gov.uk}
@@ -11,10 +12,10 @@
 #'  t <- listOrganisations()
 #' }
 
-listOrganisations <- function() {
+listOrganisations <- function(...) {
     
     ## return a JSON object (list of lists)
-    json <- runnbnurl(service="list",list='organisations')
+    json <- runnbnurl(service="list", list='organisations', ...)
      
     if (length(json) > 0) {
         ## find the unique names that are used in occ
