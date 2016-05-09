@@ -7,6 +7,7 @@
 #' group.
 #'
 #' @export
+#' @importFrom stats na.omit
 #' @param tvks a list of TVKs which are strings of 16 alphanumeric characters.
 #' You can look these up using \code{getTVKQuery}
 #' @param datasets a list of dataset keys which are strings of 8 alphanumeric 
