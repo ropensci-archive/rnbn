@@ -1,8 +1,8 @@
 Package: rnbn
 Type: Package
 Title: Access NBN Data
-Version: 1.0.4
-Date: 2016-03-09
+Version: 1.0.5
+Date: 2016-09-05
 Author: Tom August & Stuart Ball
 Maintainer: Tom August <tomaug@ceh.ac.uk>
 Description: Access to data held by the National Biodiversity Network (NBN,

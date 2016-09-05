@@ -17,5 +17,5 @@
 #' }
 #' 
 getFeature <- function(featureID=NULL, ...) {
-    runnbnurl(service="feature", feature=featureID, ...)
+    runnbnurl(service="feature", feature=featureID, ...=...)
 }

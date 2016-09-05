@@ -108,7 +108,7 @@ getOccurrences <- function(tvks=NULL, datasets=NULL, startYear=NULL,
                           gridRef = gridRef,
                           polygon = polygon,
                           attributes = attributes,
-                          ...) 
+                          ... = ...) 
         
         if (length(json) > 0) {
             ## find the unique names that are used in occ

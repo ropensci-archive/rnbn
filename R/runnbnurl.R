@@ -49,7 +49,7 @@ runnbnurl <- function(service=NULL, tvks=NULL, datasets=NULL, feature=NULL,
     
     #print(url)
     
-    resp_url <- GET(url, ...)
+    resp_url <- GET(url, ... = ...)
     
     if(!grepl("^2[[:digit:]]{2}$", resp_url$status_code)) stop(paste(http_status(resp_url)$message,
                                                                      '\nError accessing',

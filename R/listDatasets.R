@@ -15,7 +15,7 @@
 listDatasets <- function(...) {
     
     ## return a JSON object (list of lists)
-    json <- runnbnurl(service="list",list='datasets', ...)
+    json <- runnbnurl(service="list",list='datasets', ... = ...)
         
     if (length(json) > 0) {
       #n <- unique(unlist(c(sapply(json, names))))

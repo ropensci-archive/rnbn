@@ -16,7 +16,7 @@
 #' 
 #' }
 #' 
-datasetTaxa <- function(datasets=NULL, ...) {
+datasetTaxa <- function(datasets = NULL, ...) {
     
     if(is.null(datasets)) stop('datasets parameter cannot be NULL')
    
@@ -25,7 +25,9 @@ datasetTaxa <- function(datasets=NULL, ...) {
     for(dataset in datasets){
         
         ## return a JSON object (list of lists)
-        json <- runnbnurl(service="d", datasets=dataset, ...) 
+        json <- runnbnurl(service = "d",
+                          datasets = dataset,
+                          ... = ...) 
 
         if (length(json) > 0) {
             ## find the unique names that are used

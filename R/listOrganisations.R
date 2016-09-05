@@ -15,7 +15,9 @@
 listOrganisations <- function(...) {
     
     ## return a JSON object (list of lists)
-    json <- runnbnurl(service="list", list='organisations', ...)
+    json <- runnbnurl(service = "list",
+                      list = 'organisations',
+                      ... = ...)
      
     if (length(json) > 0) {
         ## find the unique names that are used in occ

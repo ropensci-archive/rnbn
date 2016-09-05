@@ -14,7 +14,9 @@
 listGroups <- function(...) {
     
     ## return a JSON object (list of lists)
-    json <- runnbnurl(service="list",list='taxonOutputGroups', ...)
+    json <- runnbnurl(service = "list",
+                      list = 'taxonOutputGroups',
+                      ... = ...)
     
     if (length(json) > 0) {
         ## find the unique names that are used in occ
