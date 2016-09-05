@@ -34,7 +34,7 @@ dataProviders <- function(datasets=NULL, ...) {
         
     for(dataset in datasets){
         
-        json <- runnbnurl(service="p", datasets=dataset, ...)
+        json <- runnbnurl(service="p", datasets=dataset, ... = ...)
         
         if (length(json) > 0 & class(json) == 'list'){
             

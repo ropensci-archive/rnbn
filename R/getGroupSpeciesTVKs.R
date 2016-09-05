@@ -18,7 +18,9 @@ getGroupSpeciesTVKs<-function(name, ...){
     
     groupID<-getGroupID(name)
     
-    json <- runnbnurl(service="species", group=groupID, ...)
+    json <- runnbnurl(service = "species",
+                      group = groupID,
+                      ... = ...)
     
     json<-json$results
     

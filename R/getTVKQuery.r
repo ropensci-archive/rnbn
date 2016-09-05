@@ -23,7 +23,7 @@
 #'  t <- getTVKQuery('blue tit')
 #' }
 #' 
-getTVKQuery<-function(query=NULL, species_only = TRUE, rec_only = FALSE, top = FALSE, ...){
+getTVKQuery<-function(query = NULL, species_only = TRUE, rec_only = FALSE, top = FALSE, ...){
     
     if(is.null(q)) stop('query string must not be null')
     
@@ -33,7 +33,9 @@ getTVKQuery<-function(query=NULL, species_only = TRUE, rec_only = FALSE, top = F
         
         q <- tolower(gsub(' ','%20', q))
         
-        json <- runnbnurl(service="query", query=q, ...)
+        json <- runnbnurl(service = "query",
+                          query = q,
+                          ... = ...)
         
         json<-json$results
         

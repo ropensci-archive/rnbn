@@ -17,7 +17,9 @@
 getTaxonomy <- function(tvks=NULL, ...) {
     
     ## return a JSON object (list of lists)
-    json <- runnbnurl(service="ancestry", tvks=tvks, ...) 
+    json <- runnbnurl(service = "ancestry",
+                      tvks = tvks,
+                      ... = ...) 
     
     if (length(json) > 0) {
         ## find the unique names that are used in occ

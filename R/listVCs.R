@@ -14,9 +14,9 @@
 listVCs <- function(...) {
     
     ## return a JSON object (list of lists)
-    json <- runnbnurl(service="list",
-                      list='siteBoundaryDatasets/GA000344/siteBoundaries',
-                      ...)
+    json <- runnbnurl(service = "list",
+                      list = 'siteBoundaryDatasets/GA000344/siteBoundaries',
+                      ... = ...)
             
     if (length(json) > 0) {
         ## find the unique names that are used in occ
