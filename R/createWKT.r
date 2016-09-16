@@ -12,7 +12,7 @@
 #' @export
 #' @examples
 #' 
-#' createWKT(51.6011023, -1.1278673, 1000)
+#' rnbn::createWKT(51.6011023, -1.1278673, 1000)
 
 createWKT <- function(latitude, longitude, radius = 5000){
     
