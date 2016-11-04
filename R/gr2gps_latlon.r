@@ -212,6 +212,11 @@ OSGridstoLatLong <-
             datum_params = datum_vars
         }
         
+        if(is.na(Datum)){
+            
+            return(data.frame(LATITUDE = NA, LONGITUDE = NA))
+        }
+        
         # Determine length of Easting & check same as Northing
         east_len = length(Easting)
         if(length(Northing) != east_len){
