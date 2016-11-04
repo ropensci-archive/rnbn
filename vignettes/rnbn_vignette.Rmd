@@ -177,17 +177,17 @@ occ[1:10,c("pTaxonName", "startDate",
 ```
 
 ```
-##        pTaxonName  startDate latitude   longitude
-## 1  Tropidia scita 1999-06-16 53.96629 -2.74077385
-## 2  Tropidia scita 1999-06-13 54.17269 -2.79041559
-## 3  Tropidia scita 1999-06-16 53.95730 -2.74061447
-## 4  Tropidia scita 1999-06-18 54.11877 -2.78938893
-## 5  Tropidia scita 2003-07-19 52.25042  1.60990207
-## 6  Tropidia scita 2003-07-15 52.31187  1.65893247
-## 7  Tropidia scita 2003-07-13 52.37498  1.01754937
-## 8  Tropidia scita 2003-07-16 52.25131  1.58066354
-## 9  Tropidia scita 2005-05-31 52.94603 -0.05926616
-## 10 Tropidia scita 2005-05-31 53.05868  0.18456629
+##        pTaxonName  startDate latitude longitude
+## 1  Tropidia scita 1990-05-28 50.71863 -2.015530
+## 2  Tropidia scita 1994-06-30 50.84450 -1.930352
+## 3  Tropidia scita 1988-01-01 51.67065 -4.093176
+## 4  Tropidia scita 1985-01-01 51.70143 -4.275503
+## 5  Tropidia scita 1985-01-01 51.72432 -4.368601
+## 6  Tropidia scita 1997-06-11 51.72167 -4.298238
+## 7  Tropidia scita 1983-01-01 51.70143 -4.275503
+## 8  Tropidia scita 1995-01-01 51.68982 -4.294454
+## 9  Tropidia scita 1986-01-01 52.55561 -3.925584
+## 10 Tropidia scita 1986-01-01 51.72698 -4.302852
 ```
 
 
@@ -237,17 +237,17 @@ occ[1:10, c("pTaxonName", "location")]
 ```
 
 ```
-##                pTaxonName location
-## 1        Erythromma najas   TL3490
-## 2          Aeshna grandis   TL3490
-## 3           Aeshna cyanea   TL3490
-## 4            Aeshna mixta   TL3490
-## 5   Orthetrum cancellatum   TL3490
-## 6    Sympetrum striolatum   TL3490
-## 7    Sympetrum sanguineum   TL3490
-## 8        Ischnura elegans   TL3490
-## 9          Talpa europaea   TL3490
-## 10 Homalothecium sericeum TL342906
+##               pTaxonName location
+## 1       Erythromma najas   TL3490
+## 2         Aeshna grandis   TL3490
+## 3          Aeshna cyanea   TL3490
+## 4           Aeshna mixta   TL3490
+## 5  Orthetrum cancellatum   TL3490
+## 6   Sympetrum striolatum   TL3490
+## 7   Sympetrum sanguineum   TL3490
+## 8       Ischnura elegans   TL3490
+## 9         Talpa europaea   TL3490
+## 10    Phascum cuspidatum TL340906
 ```
 
 
@@ -306,12 +306,12 @@ head(sort(table(occ$siteName), decreasing = TRUE))
 
 ```
 ## 
-##              Site name unavailable                        Oxfordshire 
-##                               5438                                238 
-##                Site name protected                        Wallingford 
-##                                218                                155 
-##                    CEH Wallingford Little Court & Wroxhills Wood area 
-##                                100                                 56
+##       Site name unavailable                 Oxfordshire 
+##                        5437                         238 
+##         Site name protected             CEH Wallingford 
+##                         218                         197 
+##                 Wallingford Crowmarsh Recreation ground 
+##                         110                          86
 ```
 
 ### Using species group
@@ -368,26 +368,26 @@ head(datasets[45:50,]) # I select a group with short titles
 
 ```
 ##                                             title      key
-## 46    Bedfordshire Brown Hares (BNHS) - 1990-2013 GA001169
-## 47     Bedfordshire Bumblebees (BNHS) - 2006-2014 GA000700
-## 48 Bedfordshire Butterflies (BNHS/BC) - 1976-2014 GA000481
-## 49     Bedfordshire Coleoptera (BNHS) - 1986-2014 GA000674
-## 50      Bedfordshire Diplopoda (BNHS) - 1975-1985 GA000675
-## 51   Bedfordshire Dormice (BNHS/BDG) -  2000-2012 GA000703
-##                                                                                                                                                                                                                                                                                                                                         description
-## 46                                                                                                                                                                                                                                                                                                                    Brown Hare (Lepus europaeus).
-## 47                                                                                                                                                                                                                                                                                                                                      Bumblebees.
-## 48 Butterflies.\r\nMany of the records within this dataset are also on the NBN Gateway in the datasets uploaded by Butterfly Conservation, however this dataset also contains more recent records and all records (including the recent ones) are displayed at the finest public resolution of 2km negotiated nationally by Butterfly Conservation.
-## 49                                                                                                                                                                                                                                                                                                                            Coleoptera (Beetles).
-## 50                                                                                                                                                                                                                                                                                                                           Diplopoda (Millipedes)
-## 51                                                                                                                                                                                              Hazel/Common Dormouse (<i>Muscardinus avellanarius</i>)\r\n<br />\r\n(There are no Edible Dormouse (<i>Glis glis</i>) records within this dataset).
+## 45 Bedfordshire Butterflies (BNHS/BC) - 1976-2015 GA000481
+## 46     Bedfordshire Coleoptera (BNHS) - 1986-2015 GA000674
+## 47      Bedfordshire Diplopoda (BNHS) - 1975-1985 GA000675
+## 48   Bedfordshire Dormice (BNHS/BDG) -  2000-2014 GA000703
+## 49          Bedfordshire Fish (BNHS) -  1800-2015 GA000704
+## 50     Bedfordshire Flora (BNHS/BSBI) - 1904-2013 GA000482
+##                                                                                                                                                                                                                                                                                                                                            description
+## 45 Butterflies\r\n\r\nMany of the records within this dataset are also on the NBN Gateway in the datasets uploaded by Butterfly Conservation, however this dataset also contains more recent records and all records (including the recent ones) are displayed at the finest public resolution of 2km negotiated nationally by Butterfly Conservation.
+## 46                                                                                                                                                                                                                                                                                                                               Coleoptera (Beetles).
+## 47                                                                                                                                                                                                                                                                                                                              Diplopoda (Millipedes)
+## 48                                                                                                                                                                                                                            Hazel/Common Dormouse (Muscardinus avellanarius) (There are no Edible Dormouse (Glis glis) records within this dataset).
+## 49                                                                                                                                                                                                                                                                                                                                               Fish.
+## 50                                                                                                                                                                                                                                                                                              Vascular plants, ferns and fern allies species records
 ##                                         href datasetLicence
-## 46 https://data.nbn.org.uk/Datasets/GA001169           <NA>
-## 47 https://data.nbn.org.uk/Datasets/GA000700           <NA>
-## 48 https://data.nbn.org.uk/Datasets/GA000481           <NA>
-## 49 https://data.nbn.org.uk/Datasets/GA000674           <NA>
-## 50 https://data.nbn.org.uk/Datasets/GA000675           <NA>
-## 51 https://data.nbn.org.uk/Datasets/GA000703           <NA>
+## 45 https://data.nbn.org.uk/Datasets/GA000481           <NA>
+## 46 https://data.nbn.org.uk/Datasets/GA000674           <NA>
+## 47 https://data.nbn.org.uk/Datasets/GA000675           <NA>
+## 48 https://data.nbn.org.uk/Datasets/GA000703           <NA>
+## 49 https://data.nbn.org.uk/Datasets/GA000704           <NA>
+## 50 https://data.nbn.org.uk/Datasets/GA000482           <NA>
 ```
 
 
@@ -515,13 +515,13 @@ WCresults[10:15,c('observationID','attributes.Comment',
 ```
 
 ```
-##    observationID     attributes.Comment attributes.SampleMethod
-## 10     438392768  Reported to recorder.       Field Observation
-## 11     438398476  Track/trail. VC: 108.       Field Observation
-## 12     438399749                              Field Observation
-## 13     438399992                  Seen.       Field Observation
-## 14     438400312                              Field Observation
-## 15     438409442 Dead on Road. VC: 108.       Field Observation
+##    observationID attributes.Comment attributes.SampleMethod
+## 10     517027077                          Field Observation
+## 11     517022722     Seen. VC: 108.       Field Observation
+## 12     517054489                          Field Observation
+## 13     117162401               <NA>                    <NA>
+## 14     117162485               <NA>                    <NA>
+## 15     517045071     Seen. VC: 108.       Field Observation
 ```
 
 

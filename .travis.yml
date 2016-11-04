@@ -1,8 +1,11 @@
 language: r
-
+dist: trusty
+cache: packages
 sudo: required
 
 apt_packages:
+ - libgdal-dev
+ - libproj-dev
  - libv8-dev
  
 r_binary_packages:
