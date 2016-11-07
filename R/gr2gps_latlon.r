@@ -27,7 +27,7 @@ gr2gps_latlon = function(gridref, precision = NULL, centre = TRUE){
     out_latlon = OSGridstoLatLong(org_en$EASTING, org_en$NORTHING, org_en$PROJECTION)
     
     # Determine indices of gridrefs that are not UTM30 (which will need transformed)
-    i_trans = which(!org_en$PROJECTION %in% c("UTM30","WGS84"))
+    i_trans = which(!org_en$PROJECTION %in% c("UTM30","WGS84", NA))
     
 	# Determine whether any supplied grid references need reprojection (i.e. are any grid references from UK, Ireland)
 	if(length(i_trans) > 0){
@@ -212,11 +212,6 @@ OSGridstoLatLong <-
             datum_params = datum_vars
         }
         
-        if(is.na(Datum)){
-            
-            return(data.frame(LATITUDE = NA, LONGITUDE = NA))
-        }
-        
         # Determine length of Easting & check same as Northing
         east_len = length(Easting)
         if(length(Northing) != east_len){
@@ -228,7 +223,7 @@ OSGridstoLatLong <-
         if(!length(Datum) %in% c(1,east_len)){
             stop("ERROR: Length of 'Datum' does not match length of Easting/Northing values")
         }
-        datum_list = unique(Datum)
+        datum_list = na.omit(unique(Datum))
         # Check all Datum are in datum_params data frame
         miss_datum = which(!datum_list %in% datum_params$Datum)
         if(length(miss_datum) > 0){
@@ -350,7 +345,7 @@ LatLong_Cartesian <-
         if(!length(Datum) %in% c(1,lat_len)){
             stop("ERROR: Length of 'Datum' does not match length of Latitude/Longitude values")
         }
-        datum_list = unique(Datum)
+        datum_list = na.omit(unique(Datum))
         # Check all Datum are in datum_params data frame
         miss_datum = which(!datum_list %in% datum_params$Datum)
         if(length(miss_datum) > 0){
@@ -492,7 +487,7 @@ Cartesian_LatLong <-
         if(!length(Datum) %in% c(1,len_x)){
             stop("ERROR: Length of 'Datum' does not match length of input 'x','y' & 'z' values")
         }
-        datum_list = unique(Datum)
+        datum_list = na.omit(unique(Datum))
         # Check all Datum present in data are in datum_params data frame
         miss_datum = which(!datum_list %in% datum_params$Datum)
         if(length(miss_datum) > 0){
