@@ -1,3 +1,8 @@
+DECOMISSIONING
+==============
+
+The NBN gateway services which rnbn uses are being stopped in March 2017. At this time rnbn will stop working. We hope to be able to replace rnbn with another r-package that will use the new NBN servies being launched. Updates will be posted on the rnbn Github pages https://github.com/ropensci/rnbn
+
 rnbn 1.1.1 (2016-12-06)
 =========================
 
