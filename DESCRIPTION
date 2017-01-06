@@ -1,8 +1,8 @@
 Package: rnbn
 Type: Package
 Title: Access NBN Data
-Version: 1.1.1
-Date: 2016-01-05
+Version: 1.1.2
+Date: 2016-01-06
 Authors@R: c(person("Tom", "August", role = c("aut", "cre"),
                     email = "tomaug@ceh.ac.uk"),
              person("Stuart", "Ball", role = c("aut")))
