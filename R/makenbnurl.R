@@ -1,7 +1,7 @@
 #' Build the URL to call NBN web-services
 #' 
 #' The base URL for the RESTful services is:
-#' \url{https://data.nbn.org.uk/api/} 
+#' https://data.nbn.org.uk/api/
 #' Parameters can be added, depending on the service called. \cr\cr
 #' The following services are available at the time of writing: \cr
 #' \code{taxonObservations?ptvk=<tvk>&datasetKey=<dataset>&startYear=<year> 
