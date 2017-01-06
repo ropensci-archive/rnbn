@@ -1,6 +1,13 @@
 rnbn 1.1.1 (2016-12-06)
 =========================
 
+### MAJOR CHANGES
+
+* Add an .onAttach warning of the decomissioning of rnbn on the 31st March 2017
+
+rnbn 1.1.1 (2016-12-06)
+=========================
+
 ### MINOR IMPROVEMENTS
 
 * Address issues arrising when the data contains NA location data or mal-formed grid references (#29)

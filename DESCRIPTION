@@ -2,12 +2,12 @@ Package: rnbn
 Type: Package
 Title: Access NBN Data
 Version: 1.1.1
-Date: 2016-09-16
+Date: 2016-01-05
 Authors@R: c(person("Tom", "August", role = c("aut", "cre"),
                     email = "tomaug@ceh.ac.uk"),
-             person("Staurt", "Ball", role = c("aut")))
-Author: Tom August [aut, cre], 
-        Stuart Ball [aut]
+             person("Stuart", "Ball", role = c("aut")))
+Author: Tom August [aut, cre],
+    Stuart Ball [aut]
 Maintainer: Tom August <tomaug@ceh.ac.uk>
 Description: Access to data held by the National Biodiversity Network (NBN,
     www.nbn.org.uk). The NBN acts as a data warehouse for biological records data in
