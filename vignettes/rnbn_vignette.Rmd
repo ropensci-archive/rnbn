@@ -90,6 +90,10 @@ install.packages('rnbn')
 library(rnbn)
 ```
 
+```
+## The NBN is moving to new APIs in 2017, as a result this package will stop working at the end of March 2017. A new package will be created for the new APIs. For more information see https://github.com/ropensci/rnbn/issues/37
+```
+
 
 The `getOccurrences` function gets a data.frame of species occurrence records from
 the NBN Gateway. Columns include name, TVK, date and location of the observation as a
@@ -247,7 +251,7 @@ occ[1:10, c("pTaxonName", "location")]
 ## 7   Sympetrum sanguineum   TL3490
 ## 8       Ischnura elegans   TL3490
 ## 9         Talpa europaea   TL3490
-## 10    Phascum cuspidatum TL340906
+## 10      Bryum dichotomum TL342905
 ```
 
 
@@ -272,17 +276,17 @@ occ[1:10, c("pTaxonName", "location")]
 ```
 
 ```
-##                     pTaxonName location
-## 1                 Cottus gobio     SU68
-## 2  Pseudachorutes corticicolus     SU68
-## 3             Knautia arvensis     SU68
-## 4               Galium mollugo     SU68
-## 5             Bromopsis erecta     SU68
-## 6          Ranunculus bulbosus     SU68
-## 7             Senecio jacobaea     SU68
-## 8           Leontodon hispidus     SU68
-## 9             Knautia arvensis     SU68
-## 10            Senecio jacobaea     SU68
+##                             pTaxonName location
+## 1  Sympherobius (Sympherobius) elegans     SU68
+## 2                  Cynosurus cristatus     SU68
+## 3                 Hypericum perforatum     SU68
+## 4                 Centaurium erythraea     SU68
+## 5           Euphrasia officinalis agg.     SU68
+## 6                   Crataegus monogyna     SU68
+## 7                 Pimpinella saxifraga     SU68
+## 8                     Bromopsis erecta     SU68
+## 9                     Carlina vulgaris     SU68
+## 10                         Viola hirta     SU68
 ```
 
 
@@ -309,7 +313,7 @@ head(sort(table(occ$siteName), decreasing = TRUE))
 ##       Site name unavailable                 Oxfordshire 
 ##                        5437                         238 
 ##         Site name protected             CEH Wallingford 
-##                         218                         197 
+##                         218                         194 
 ##                 Wallingford Crowmarsh Recreation ground 
 ##                         110                          86
 ```
@@ -367,27 +371,27 @@ head(datasets[45:50,]) # I select a group with short titles
 ```
 
 ```
-##                                             title      key
-## 45 Bedfordshire Butterflies (BNHS/BC) - 1976-2015 GA000481
-## 46     Bedfordshire Coleoptera (BNHS) - 1986-2015 GA000674
-## 47      Bedfordshire Diplopoda (BNHS) - 1975-1985 GA000675
-## 48   Bedfordshire Dormice (BNHS/BDG) -  2000-2014 GA000703
-## 49          Bedfordshire Fish (BNHS) -  1800-2015 GA000704
-## 50     Bedfordshire Flora (BNHS/BSBI) - 1904-2013 GA000482
-##                                                                                                                                                                                                                                                                                                                                            description
-## 45 Butterflies\r\n\r\nMany of the records within this dataset are also on the NBN Gateway in the datasets uploaded by Butterfly Conservation, however this dataset also contains more recent records and all records (including the recent ones) are displayed at the finest public resolution of 2km negotiated nationally by Butterfly Conservation.
-## 46                                                                                                                                                                                                                                                                                                                               Coleoptera (Beetles).
-## 47                                                                                                                                                                                                                                                                                                                              Diplopoda (Millipedes)
-## 48                                                                                                                                                                                                                            Hazel/Common Dormouse (Muscardinus avellanarius) (There are no Edible Dormouse (Glis glis) records within this dataset).
-## 49                                                                                                                                                                                                                                                                                                                                               Fish.
-## 50                                                                                                                                                                                                                                                                                              Vascular plants, ferns and fern allies species records
+##                                                     title      key
+## 45              Bedfordshire Diplopoda (BNHS) - 1975-1985 GA000675
+## 46           Bedfordshire Dormice (BNHS/BDG) -  2000-2014 GA000703
+## 47                  Bedfordshire Fish (BNHS) -  1800-2015 GA000704
+## 48             Bedfordshire Flora (BNHS/BSBI) - 1904-2013 GA000482
+## 49      Bedfordshire Herpetofauna (BNHS/BRAG) - 1973-2016 GA000458
+## 50 Bedfordshire Himalayan Balsam Surveys (WT) - 2010-2012 GA001205
+##                                                                                                                                                                                                                                                                              description
+## 45                                                                                                                                                                                                                                                                Diplopoda (Millipedes)
+## 46                                                                                                                                                              Hazel/Common Dormouse (Muscardinus avellanarius) (There are no Edible Dormouse (Glis glis) records within this dataset).
+## 47                                                                                                                                                                                                                                                                                 Fish.
+## 48                                                                                                                                                                                                                                Vascular plants, ferns and fern allies species records
+## 49                                                                                                                                                                                                                                                Reptile and Amphibian species records.
+## 50 Field surveys in the River Flit Valley were undertaken during the summers of 2010 to 2012 to map the distribution and abundance of Himalayan Balsam (Impatiens glandulifera). Where none was found this was recorded, in addition to three levels of abundance low, medium and high).
 ##                                         href datasetLicence
-## 45 https://data.nbn.org.uk/Datasets/GA000481           <NA>
-## 46 https://data.nbn.org.uk/Datasets/GA000674           <NA>
-## 47 https://data.nbn.org.uk/Datasets/GA000675           <NA>
-## 48 https://data.nbn.org.uk/Datasets/GA000703           <NA>
-## 49 https://data.nbn.org.uk/Datasets/GA000704           <NA>
-## 50 https://data.nbn.org.uk/Datasets/GA000482           <NA>
+## 45 https://data.nbn.org.uk/Datasets/GA000675           <NA>
+## 46 https://data.nbn.org.uk/Datasets/GA000703           <NA>
+## 47 https://data.nbn.org.uk/Datasets/GA000704           <NA>
+## 48 https://data.nbn.org.uk/Datasets/GA000482           <NA>
+## 49 https://data.nbn.org.uk/Datasets/GA000458           <NA>
+## 50 https://data.nbn.org.uk/Datasets/GA001205           <NA>
 ```
 
 
@@ -515,13 +519,27 @@ WCresults[10:15,c('observationID','attributes.Comment',
 ```
 
 ```
-##    observationID attributes.Comment attributes.SampleMethod
-## 10     517027077                          Field Observation
-## 11     517022722     Seen. VC: 108.       Field Observation
-## 12     517054489                          Field Observation
-## 13     117162401               <NA>                    <NA>
-## 14     117162485               <NA>                    <NA>
-## 15     517045071     Seen. VC: 108.       Field Observation
+##    observationID
+## 10     517022722
+## 11     517023627
+## 12     517025692
+## 13     517027077
+## 14     517034379
+## 15     517039499
+##                                                        attributes.Comment
+## 10                                                         Seen. VC: 108.
+## 11                                                  Track/trail. VC: 108.
+## 12                                                                       
+## 13                                                                       
+## 14 Tracks/trail. Ref: Swan, P. (2000). field records. From IMAG database.
+## 15                                                                  Seen.
+##    attributes.SampleMethod
+## 10       Field Observation
+## 11       Field Observation
+## 12       Field Observation
+## 13       Field Observation
+## 14       Field Observation
+## 15       Field Observation
 ```
 
 
@@ -566,7 +584,7 @@ nrow(providers)
 ```
 
 ```
-## [1] 9
+## [1] 8
 ```
 
 
